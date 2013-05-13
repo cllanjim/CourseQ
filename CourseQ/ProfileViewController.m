@@ -35,4 +35,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)leftTouched:(UIButton *)sender {
+    
+    [self leftBarBtnTapped:sender];
+}
 @end

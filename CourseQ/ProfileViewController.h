@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : BaseViewController
+- (IBAction)leftTouched:(UIButton *)sender;
 
 @end

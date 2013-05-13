@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09F35E841740FBB500A53F81 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F35E821740FBB500A53F81 /* BaseViewController.m */; };
+		09F35E851740FBB500A53F81 /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09F35E831740FBB500A53F81 /* BaseViewController.xib */; };
 		18E616621740E8F500E3CF7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E616611740E8F500E3CF7D /* UIKit.framework */; };
 		18E616641740E8F500E3CF7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E616631740E8F500E3CF7D /* Foundation.framework */; };
 		18E616661740E8F500E3CF7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E616651740E8F500E3CF7D /* CoreGraphics.framework */; };
@@ -31,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09F35E811740FBB500A53F81 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		09F35E821740FBB500A53F81 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		09F35E831740FBB500A53F81 /* BaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
+		09F35E861740FD0400A53F81 /* MainPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPage.h; sourceTree = "<group>"; };
 		18E6165E1740E8F500E3CF7D /* CourseQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E616611740E8F500E3CF7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18E616631740E8F500E3CF7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,6 +133,10 @@
 		09F35E801740FA7B00A53F81 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				09F35E861740FD0400A53F81 /* MainPage.h */,
+				09F35E811740FBB500A53F81 /* BaseViewController.h */,
+				09F35E821740FBB500A53F81 /* BaseViewController.m */,
+				09F35E831740FBB500A53F81 /* BaseViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -248,6 +258,7 @@
 				18E616971740E9E000E3CF7D /* MakerViewController.xib in Resources */,
 				18E6169C1740E9E700E3CF7D /* ProfileViewController.xib in Resources */,
 				18E616A11740EA1800E3CF7D /* LoginViewController.xib in Resources */,
+				09F35E851740FBB500A53F81 /* BaseViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +277,7 @@
 				18E616961740E9E000E3CF7D /* MakerViewController.m in Sources */,
 				18E6169B1740E9E700E3CF7D /* ProfileViewController.m in Sources */,
 				18E616A01740EA1800E3CF7D /* LoginViewController.m in Sources */,
+				09F35E841740FBB500A53F81 /* BaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
