@@ -14,6 +14,7 @@
 #import "MakerViewController.h"
 #import "ProfileViewController.h"
 #import "MainPage.h"
+#import "BaseViewController.h"
 
 @interface RootViewController ()
 
@@ -47,7 +48,7 @@
     
     self.loginVC = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
     [self.loginVC addObserver:self forKeyPath:@"loginFinish" options:NSKeyValueObservingOptionNew context:nil];
-    [self displayContentController:self.loginVC];
+    [self displayContentController:self.loginVC animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -69,7 +70,7 @@
         //show ListVC
         self.listVC = [[[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil] autorelease];
         [self.listVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
-        [self displayContentController:self.listVC];
+        [self displayContentController:self.listVC animated:NO];
         
         //kill loginVC
         [self hideContentController:self.loginVC];
@@ -89,15 +90,14 @@
         [self displayContentController:self.contentsVC below:self.listVC.view];
         
         //move ListVC
-        [self.listVC.view setFrame:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)]; // 向左移动
-        
+        [self.listVC animateHomeViewToSide:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     }
     
     else if ([keyPath isEqualToString:@"profilePressed"]) {
         
         //show profileVC
         self.profileVC = [[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil] autorelease];
-        [self displayContentController:self.profileVC];
+        [self displayContentController:self.profileVC animated:YES];
         
         //kill ListVC
         [self hideContentController:self.listVC];
@@ -117,11 +117,23 @@
 
 #pragma mark - transition of view controller
 
-- (void)displayContentController:(UIViewController *)content{
+
+
+- (void)displayContentController:(UIViewController *)content animated:(BOOL)animated{
     
     [self addChildViewController:content];
-    [content.view setFrame:self.view.bounds];
     [self.view addSubview:content.view];
+    if (animated)
+    {
+        [content.view setFrame:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        [UIView animateWithDuration:0.3 animations:^{
+            [content.view setFrame:self.view.bounds];
+        }];
+    }
+    else
+    {
+        [content.view setFrame:self.view.bounds];
+    }
     [content didMoveToParentViewController:self];
 }
 

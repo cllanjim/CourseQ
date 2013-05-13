@@ -74,16 +74,18 @@
     else if (self.view.frame.origin.x > kTriggerOffSet)
         [self moveToRightSide];
     // reset
-    else
+    else{
+        self.leftPressed = NO;
         [self restoreViewLocation];
+    }
 }
 
 #pragma mark Other methods
 
 // restore view location
 - (void)restoreViewLocation{
-    homeViewIsOutOfStage = NO;
     
+    homeViewIsOutOfStage = NO;
     BaseViewController *weakNaviC = self;
     [UIView animateWithDuration:0.3
                      animations:^{
@@ -111,6 +113,8 @@
 
 // move view to right side
 - (void)moveToRightSide {
+    
+    self.leftPressed = YES;
     homeViewIsOutOfStage = YES;
     [self animateHomeViewToSide:CGRectMake(kLeftMaxBounds,
                                            self.view.frame.origin.y,
@@ -140,13 +144,11 @@
 // handle left bar btn
 - (IBAction)leftBarBtnTapped:(id)sender {
     
-    self.leftPressed = YES;
     [self moveToRightSide];
 }
 
 // handle right bar btn
 - (IBAction)rightBarBtnTapped:(id)sender {
-    
 
     [self moveToLeftSide];
 }
