@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"rootVC");
+    // NSLog(@"rootVC");
 }
 
 - (void)viewWillAppear:(BOOL)animated {

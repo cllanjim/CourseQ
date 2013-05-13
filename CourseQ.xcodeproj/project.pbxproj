@@ -78,6 +78,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09F35E7B1740F8B100A53F81 /* MainFramePages */ = {
+			isa = PBXGroup;
+			children = (
+				18E616841740E90400E3CF7D /* RootViewController.h */,
+				18E616851740E90400E3CF7D /* RootViewController.m */,
+				18E616861740E90400E3CF7D /* RootViewController.xib */,
+				18E6169D1740EA1800E3CF7D /* LoginViewController.h */,
+				18E6169E1740EA1800E3CF7D /* LoginViewController.m */,
+				18E6169F1740EA1800E3CF7D /* LoginViewController.xib */,
+				18E616891740E9B800E3CF7D /* ContentsViewController.h */,
+				18E6168A1740E9B800E3CF7D /* ContentsViewController.m */,
+				18E6168B1740E9B800E3CF7D /* ContentsViewController.xib */,
+				18E6168E1740E9CC00E3CF7D /* ListViewController.h */,
+				18E6168F1740E9CC00E3CF7D /* ListViewController.m */,
+				18E616901740E9CC00E3CF7D /* ListViewController.xib */,
+				18E616931740E9E000E3CF7D /* MakerViewController.h */,
+				18E616941740E9E000E3CF7D /* MakerViewController.m */,
+				18E616951740E9E000E3CF7D /* MakerViewController.xib */,
+				18E616981740E9E700E3CF7D /* ProfileViewController.h */,
+				18E616991740E9E700E3CF7D /* ProfileViewController.m */,
+				18E6169A1740E9E700E3CF7D /* ProfileViewController.xib */,
+			);
+			name = MainFramePages;
+			sourceTree = "<group>";
+		};
+		09F35E7D1740FA7A00A53F81 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		09F35E7E1740FA7A00A53F81 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		09F35E7F1740FA7A00A53F81 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		09F35E801740FA7B00A53F81 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		18E616551740E8F500E3CF7D = {
 			isa = PBXGroup;
 			children = (
@@ -108,26 +161,13 @@
 		18E616671740E8F500E3CF7D /* CourseQ */ = {
 			isa = PBXGroup;
 			children = (
+				09F35E7D1740FA7A00A53F81 /* Resources */,
+				09F35E7E1740FA7A00A53F81 /* Pages */,
+				09F35E7F1740FA7A00A53F81 /* Models */,
+				09F35E801740FA7B00A53F81 /* Classes */,
+				09F35E7B1740F8B100A53F81 /* MainFramePages */,
 				18E616701740E8F500E3CF7D /* AppDelegate.h */,
 				18E616711740E8F500E3CF7D /* AppDelegate.m */,
-				18E616841740E90400E3CF7D /* RootViewController.h */,
-				18E616851740E90400E3CF7D /* RootViewController.m */,
-				18E616861740E90400E3CF7D /* RootViewController.xib */,
-				18E6169D1740EA1800E3CF7D /* LoginViewController.h */,
-				18E6169E1740EA1800E3CF7D /* LoginViewController.m */,
-				18E6169F1740EA1800E3CF7D /* LoginViewController.xib */,
-				18E616891740E9B800E3CF7D /* ContentsViewController.h */,
-				18E6168A1740E9B800E3CF7D /* ContentsViewController.m */,
-				18E6168B1740E9B800E3CF7D /* ContentsViewController.xib */,
-				18E6168E1740E9CC00E3CF7D /* ListViewController.h */,
-				18E6168F1740E9CC00E3CF7D /* ListViewController.m */,
-				18E616901740E9CC00E3CF7D /* ListViewController.xib */,
-				18E616931740E9E000E3CF7D /* MakerViewController.h */,
-				18E616941740E9E000E3CF7D /* MakerViewController.m */,
-				18E616951740E9E000E3CF7D /* MakerViewController.xib */,
-				18E616981740E9E700E3CF7D /* ProfileViewController.h */,
-				18E616991740E9E700E3CF7D /* ProfileViewController.m */,
-				18E6169A1740E9E700E3CF7D /* ProfileViewController.xib */,
 				18E616681740E8F500E3CF7D /* Supporting Files */,
 			);
 			path = CourseQ;
@@ -338,6 +378,7 @@
 				18E616831740E8F500E3CF7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
