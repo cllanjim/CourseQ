@@ -15,6 +15,8 @@
     BOOL homeViewIsOutOfStage;
 }
 
+@property (nonatomic,assign,getter = isLeftPressed) BOOL leftPressed;
+
 @property (assign,nonatomic,getter = isRightSideLocked) BOOL rightSideLocked;
 @property (assign,nonatomic,getter = isLeftSideLocked) BOOL leftSideLocked;
 

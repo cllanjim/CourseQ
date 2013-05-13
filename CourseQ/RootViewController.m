@@ -13,6 +13,7 @@
 #import "ListViewController.h"
 #import "MakerViewController.h"
 #import "ProfileViewController.h"
+#import "MainPage.h"
 
 @interface RootViewController ()
 
@@ -79,7 +80,7 @@
     
     else if ([keyPath isEqualToString:@"leftPressed"]) {
         
-        NSLog(@"left");
+        // NSLog(@"left");
         //add contentsVC below ListVC
         self.contentsVC = [[[ContentsViewController alloc] initWithNibName:@"ContentsViewController" bundle:nil] autorelease];
         [self.contentsVC addObserver:self forKeyPath:@"listPressed" options:NSKeyValueObservingOptionNew context:nil];
@@ -88,7 +89,8 @@
         [self displayContentController:self.contentsVC below:self.listVC.view];
         
         //move ListVC
-        [self.listVC.view setFrame:CGRectMake(160.0, 0, 320.0, 568.0)];
+        [self.listVC.view setFrame:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)]; // 向左移动
+        
     }
     
     else if ([keyPath isEqualToString:@"profilePressed"]) {

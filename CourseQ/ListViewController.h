@@ -11,6 +11,6 @@
 
 @interface ListViewController : BaseViewController
 
-@property (nonatomic) BOOL leftPressed;
+- (IBAction)leftBarBtnTapped:(id)sender;
 
 @end

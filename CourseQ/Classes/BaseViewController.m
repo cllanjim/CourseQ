@@ -139,7 +139,8 @@
 
 // handle left bar btn
 - (IBAction)leftBarBtnTapped:(id)sender {
-
+    
+    self.leftPressed = YES;
     [self moveToRightSide];
 }
 

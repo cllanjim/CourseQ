@@ -14,9 +14,9 @@
 
 @implementation ListViewController
 
-
-- (IBAction)leftPressed:(id)sender {
-    self.leftPressed = YES;
+- (IBAction)leftBarBtnTapped:(id)sender{
+    
+    [super leftBarBtnTapped:sender];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
