@@ -1,18 +1,23 @@
 //
-//  MakerViewController.m
+//  SettingViewController.m
 //  CourseQ
 //
-//  Created by Jing on 13-5-13.
+//  Created by Jing on 13-5-14.
 //  Copyright (c) 2013年 jing. All rights reserved.
 //
 
-#import "MakerViewController.h"
+#import "SettingViewController.h"
 
-@interface MakerViewController ()
+@interface SettingViewController ()
 
 @end
 
-@implementation MakerViewController
+@implementation SettingViewController
+
+- (IBAction)leftBarBtnTapped:(id)sender {
+    
+    [super leftBarBtnTapped:sender];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

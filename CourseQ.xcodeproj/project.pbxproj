@@ -30,6 +30,8 @@
 		18E6169C1740E9E700E3CF7D /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E6169A1740E9E700E3CF7D /* ProfileViewController.xib */; };
 		18E616A01740EA1800E3CF7D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E6169E1740EA1800E3CF7D /* LoginViewController.m */; };
 		18E616A11740EA1800E3CF7D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E6169F1740EA1800E3CF7D /* LoginViewController.xib */; };
+		18F03691174215FC005555BE /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0368F174215FC005555BE /* SettingViewController.m */; };
+		18F03692174215FC005555BE /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F03690174215FC005555BE /* SettingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,9 @@
 		18E6169D1740EA1800E3CF7D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E6169E1740EA1800E3CF7D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E6169F1740EA1800E3CF7D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		18F0368E174215FC005555BE /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		18F0368F174215FC005555BE /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		18F03690174215FC005555BE /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +110,9 @@
 				18E616981740E9E700E3CF7D /* ProfileViewController.h */,
 				18E616991740E9E700E3CF7D /* ProfileViewController.m */,
 				18E6169A1740E9E700E3CF7D /* ProfileViewController.xib */,
+				18F0368E174215FC005555BE /* SettingViewController.h */,
+				18F0368F174215FC005555BE /* SettingViewController.m */,
+				18F03690174215FC005555BE /* SettingViewController.xib */,
 			);
 			name = MainFramePages;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				18E6169C1740E9E700E3CF7D /* ProfileViewController.xib in Resources */,
 				18E616A11740EA1800E3CF7D /* LoginViewController.xib in Resources */,
 				09F35E851740FBB500A53F81 /* BaseViewController.xib in Resources */,
+				18F03692174215FC005555BE /* SettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +287,7 @@
 				18E6169B1740E9E700E3CF7D /* ProfileViewController.m in Sources */,
 				18E616A01740EA1800E3CF7D /* LoginViewController.m in Sources */,
 				09F35E841740FBB500A53F81 /* BaseViewController.m in Sources */,
+				18F03691174215FC005555BE /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
