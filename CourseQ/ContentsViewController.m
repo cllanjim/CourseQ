@@ -8,41 +8,87 @@
 
 #import "ContentsViewController.h"
 
-@interface ContentsViewController ()
+@interface ContentsViewController () <UITableViewDelegate,UITableViewDataSource>
+
+@property (retain, nonatomic) IBOutlet UITableView *titleList;
+@property (copy,nonatomic) NSArray *tableTitles;
 
 @end
 
 @implementation ContentsViewController
 
-- (IBAction)goListVC:(id)sender {
-    self.listPressed = YES;
-}
-- (IBAction)goProfileVC:(id)sender {
-    self.profilePressed = YES;
-}
-- (IBAction)goSettingVC:(id)sender {
-    self.settingPressed = YES;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Initilization
+- (NSArray *)tableTitles{
+    
+    if (_tableTitles == nil) {
+        
+        _tableTitles = [NSArray arrayWithObjects:
+                        @"",
+                        @"个人中心",
+                        @"微课程",
+                        @"设置",
+                        nil];
+    }
+    
+    return _tableTitles;
+}
+
+#pragma mark - Action
+
+#pragma mark - Menu
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 1:
+        {
+            self.profilePressed = YES;
+            break;
+        }
+        case 2:
+        {
+            self.listPressed = YES;
+            break;
+        }
+        case 3:
+        {
+            self.settingPressed = YES;
+            break;
+        }
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return [self.tableTitles count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *CellIdentifier = @"LeftViewTableCell";
+	UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+    {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        if (indexPath.row == 0)
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        }
+        else
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        }
+	}
+    cell.textLabel.text = [self.tableTitles objectAtIndex:indexPath.row];
+    
+	return cell;
 }
 
 @end

@@ -10,7 +10,6 @@
 #import "BaseViewController.h"
 
 @interface ProfileViewController : BaseViewController
-
 - (IBAction)leftTouched:(UIButton *)sender;
 
 @end

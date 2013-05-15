@@ -89,15 +89,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09F35E7B1740F8B100A53F81 /* MainFramePages */ = {
+		09298314174374A600CB5821 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				18E616841740E90400E3CF7D /* RootViewController.h */,
-				18E616851740E90400E3CF7D /* RootViewController.m */,
-				18E616861740E90400E3CF7D /* RootViewController.xib */,
 				18E6169D1740EA1800E3CF7D /* LoginViewController.h */,
 				18E6169E1740EA1800E3CF7D /* LoginViewController.m */,
 				18E6169F1740EA1800E3CF7D /* LoginViewController.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		09298315174374B100CB5821 /* MainPages */ = {
+			isa = PBXGroup;
+			children = (
 				18E616891740E9B800E3CF7D /* ContentsViewController.h */,
 				18E6168A1740E9B800E3CF7D /* ContentsViewController.m */,
 				18E6168B1740E9B800E3CF7D /* ContentsViewController.xib */,
@@ -113,6 +117,18 @@
 				18F0368E174215FC005555BE /* SettingViewController.h */,
 				18F0368F174215FC005555BE /* SettingViewController.m */,
 				18F03690174215FC005555BE /* SettingViewController.xib */,
+			);
+			name = MainPages;
+			sourceTree = "<group>";
+		};
+		09F35E7B1740F8B100A53F81 /* MainFramePages */ = {
+			isa = PBXGroup;
+			children = (
+				09298314174374A600CB5821 /* Login */,
+				09298315174374B100CB5821 /* MainPages */,
+				18E616841740E90400E3CF7D /* RootViewController.h */,
+				18E616851740E90400E3CF7D /* RootViewController.m */,
+				18E616861740E90400E3CF7D /* RootViewController.xib */,
 			);
 			name = MainFramePages;
 			sourceTree = "<group>";
@@ -365,7 +381,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CourseQ/CourseQ-Prefix.pch";
 				INFOPLIST_FILE = "CourseQ/CourseQ-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -377,7 +392,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CourseQ/CourseQ-Prefix.pch";
 				INFOPLIST_FILE = "CourseQ/CourseQ-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
