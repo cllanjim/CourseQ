@@ -67,6 +67,7 @@
 
 // reset indicators when touch ended (Add by Ethan, 2011-11-27)
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     // animate to left side
     if (self.view.frame.origin.x < -kTriggerOffSet + kTriggerOffSet)
         [self moveToLeftSide];
@@ -75,7 +76,7 @@
         [self moveToRightSide];
     // reset
     else{
-        self.leftPressed = NO;
+        
         [self restoreViewLocation];
     }
 }
@@ -87,7 +88,7 @@
     
     homeViewIsOutOfStage = NO;
     BaseViewController *weakNaviC = self;
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:kMenuSlideAnimationDuration
                      animations:^{
                          weakNaviC.view.frame = CGRectMake(0,
                                                            weakNaviC.view.frame.origin.y,
@@ -103,8 +104,8 @@
 
 // move view to left side
 - (void)moveToLeftSide {
-    homeViewIsOutOfStage = YES;
     
+    homeViewIsOutOfStage = YES;
     [self animateHomeViewToSide:CGRectMake(kRightMaxBounds,
                                            self.view.frame.origin.y,
                                            self.view.frame.size.width,
@@ -124,7 +125,7 @@
 
 // animate home view to side rect
 - (void)animateHomeViewToSide:(CGRect)newViewRect {
-    [UIView animateWithDuration:0.2
+    [UIView animateWithDuration:kMenuSlideAnimationDuration
                      animations:^{
                          self.view.frame = newViewRect;
                      }
@@ -151,29 +152,6 @@
 - (IBAction)rightBarBtnTapped:(id)sender {
 
     [self moveToLeftSide];
-}
-
-
-#pragma mark - Defaults
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

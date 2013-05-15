@@ -16,6 +16,7 @@
 #define kMarginOffset 360.0f
 #define kLeftMaxBounds 265.0f // 左视图移动边界
 #define kRightMaxBounds -60.0f // 右边视图移动边界
+#define kMenuSlideAnimationDuration 0.2f // 视图菜单滑动动画持续时间
 
 // === Key Of UserInfo
 #define CLASSNAME_OF_WS @"ClassNameOfVC"

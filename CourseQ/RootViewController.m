@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController.h"
-
 #import "LoginViewController.h"
 #import "ContentsViewController.h"
 #import "ListViewController.h"
@@ -30,21 +29,13 @@
 
 @implementation RootViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)didReceiveMemoryWarning
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    // NSLog(@"rootVC");
-}
+#pragma mark - Defaults
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -58,18 +49,10 @@
         
         //如果不是第一次登陆，直接显示listVC
     }
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - KVO
@@ -136,9 +119,6 @@
         [self hideContentsVC];
     }
 
-
-
-    
     //contentsVC
     else if ([keyPath isEqualToString:@"leftPressed"]) {
         
@@ -192,7 +172,7 @@
         [self.contentsVC removeObserver:self forKeyPath:@"settingPressed"];
         self.contentsVC = nil;
         [_contentsVC release];
-
+        
     }
     
 }
@@ -206,7 +186,7 @@
     if (animated)
     {
         [content.view setFrame:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:kMenuSlideAnimationDuration animations:^{
             [content.view setFrame:self.view.bounds];
         }];
     }
