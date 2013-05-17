@@ -40,6 +40,7 @@
 		092983C61744CAD100CB5821 /* PI_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 092983A71744CAD100CB5821 /* PI_logo@2x.png */; };
 		09F35E841740FBB500A53F81 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F35E821740FBB500A53F81 /* BaseViewController.m */; };
 		09F35E851740FBB500A53F81 /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09F35E831740FBB500A53F81 /* BaseViewController.xib */; };
+		183602791745E4E200053CFE /* 项目结构 in Resources */ = {isa = PBXBuildFile; fileRef = 183602781745E4E200053CFE /* 项目结构 */; };
 		18E616621740E8F500E3CF7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E616611740E8F500E3CF7D /* UIKit.framework */; };
 		18E616641740E8F500E3CF7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E616631740E8F500E3CF7D /* Foundation.framework */; };
 		18E616661740E8F500E3CF7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E616651740E8F500E3CF7D /* CoreGraphics.framework */; };
@@ -101,6 +102,7 @@
 		09F35E821740FBB500A53F81 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		09F35E831740FBB500A53F81 /* BaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
 		09F35E861740FD0400A53F81 /* MainPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPage.h; sourceTree = "<group>"; };
+		183602781745E4E200053CFE /* 项目结构 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "项目结构"; sourceTree = "<group>"; };
 		18E6165E1740E8F500E3CF7D /* CourseQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E616611740E8F500E3CF7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18E616631740E8F500E3CF7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -288,6 +290,7 @@
 		18E616671740E8F500E3CF7D /* CourseQ */ = {
 			isa = PBXGroup;
 			children = (
+				183602781745E4E200053CFE /* 项目结构 */,
 				092983881744CAB900CB5821 /* Resources */,
 				09F35E7E1740FA7A00A53F81 /* Pages */,
 				09F35E7F1740FA7A00A53F81 /* Models */,
@@ -408,6 +411,7 @@
 				092983C41744CAD100CB5821 /* login_Btn_pressed_QQ@2x.gif in Resources */,
 				092983C51744CAD100CB5821 /* login_Btn_Pressed_weibo@2x.gif in Resources */,
 				092983C61744CAD100CB5821 /* PI_logo@2x.png in Resources */,
+				183602791745E4E200053CFE /* 项目结构 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
