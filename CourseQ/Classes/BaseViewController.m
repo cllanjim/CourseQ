@@ -79,6 +79,8 @@
         
         [self restoreViewLocation];
     }
+    
+    
 }
 
 #pragma mark Other methods
@@ -125,6 +127,8 @@
 
 // animate home view to side rect
 - (void)animateHomeViewToSide:(CGRect)newViewRect {
+    
+    self.animationCompleted = NO;
     [UIView animateWithDuration:kMenuSlideAnimationDuration
                      animations:^{
                          self.view.frame = newViewRect;

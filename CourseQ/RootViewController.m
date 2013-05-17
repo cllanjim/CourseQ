@@ -108,6 +108,9 @@
         self.profileVC = [[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil] autorelease];
         [self.profileVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
         [self.profileVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
+        
+        self.profileVC.animationCompleted = NO;
+        
         [self displayContentController:self.profileVC animated:YES];
         
     }
@@ -122,6 +125,8 @@
         [self.listVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
         [self.listVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
 
+        self.listVC.animationCompleted = NO;
+        
         [self displayContentController:self.listVC animated:YES];
         
         
@@ -136,6 +141,7 @@
         self. settingVC= [[[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil] autorelease];
         [self.settingVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
         [self.settingVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
+        self.settingVC.animationCompleted = NO;
         [self displayContentController:self.settingVC   animated:YES];
         
     }
