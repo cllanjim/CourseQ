@@ -48,6 +48,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    //插入contentsVC
+    [self showContentsVC];
+    [self.contentsVC.view setUserInteractionEnabled:NO];
+
     //如果是第一次登陆，显示loginVC
     if (1) {
         self.loginVC = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
@@ -84,11 +88,12 @@
         //show ListVC
         self.listVC = [[[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil] autorelease];
         [self.listVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
+        [self.listVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
         [self displayContentController:self.listVC animated:NO];
         
         //kill loginVC
-        [self hideContentController:self.loginVC];
         [self.loginVC removeObserver:self forKeyPath:@"loginFinish"];
+        [self hideContentController:self.loginVC];
         self.loginVC = nil;
         [_loginVC release];
     }
@@ -102,10 +107,9 @@
         //show profileVC
         self.profileVC = [[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil] autorelease];
         [self.profileVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
+        [self.profileVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
         [self displayContentController:self.profileVC animated:YES];
         
-        //kill contentsVC
-        [self hideContentsVC];
     }
     
     else if ([keyPath isEqualToString:@"listPressed"]) {
@@ -116,10 +120,11 @@
         //show listVC
         self.listVC = [[[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil] autorelease];
         [self.listVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
+        [self.listVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
+
         [self displayContentController:self.listVC animated:YES];
         
-        //kill contentsVC
-        [self hideContentsVC];
+        
     }
     
     else if ([keyPath isEqualToString:@"settingPressed"]) {
@@ -130,24 +135,28 @@
         //show settingVC
         self. settingVC= [[[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil] autorelease];
         [self.settingVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
+        [self.settingVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
         [self displayContentController:self.settingVC   animated:YES];
         
-        //kill contentsVC
-        [self hideContentsVC];
     }
-
-
-
     
     //contentsVC
     else if ([keyPath isEqualToString:@"leftPressed"]) {
         
-        //插入contentsVC
-        [self showContentsVCBelow:(UIViewController *)object];
-        
+                
         //把原来的VC往右移
         [(BaseViewController *)object animateHomeViewToSide:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     }
+    
+    else if ([keyPath isEqualToString:@"animationCompleted"]) {
+        if (((BaseViewController *)object).animationCompleted) {
+            [self.contentsVC.view setUserInteractionEnabled:YES];
+        }else {
+            [self.contentsVC.view setUserInteractionEnabled:NO];
+        }
+        
+    }
+    
     
 }
 
@@ -159,6 +168,7 @@
         NSLog(@"list");
         [self hideContentController:self.listVC];
         [self.listVC removeObserver:self forKeyPath:@"leftPressed"];
+        [self.listVC removeObserver:self forKeyPath:@"animationCompleted"];
         self.listVC = nil;
         [_listVC release];
     }
@@ -167,12 +177,23 @@
         NSLog(@"profile");
         [self hideContentController:self.profileVC];
         [self.profileVC removeObserver:self forKeyPath:@"leftPressed"];
+        [self.profileVC removeObserver:self forKeyPath:@"animationCompleted"];
         self.profileVC = nil;
         [_profileVC release];
     }
+    
+    if (self.settingVC) {
+        NSLog(@"setting");
+        [self hideContentController:self.settingVC];
+        [self.settingVC removeObserver:self forKeyPath:@"leftPressed"];
+        [self.settingVC removeObserver:self forKeyPath:@"animationCompleted"];
+        self.settingVC = nil;
+        [_settingVC release];
+    }
+
 }
 
-- (void)showContentsVCBelow:(UIViewController *)vc {
+- (void)showContentsVC {
     
     if (!self.contentsVC) {
         self.contentsVC = [[[ContentsViewController alloc] initWithNibName:@"ContentsViewController" bundle:nil] autorelease];
@@ -180,7 +201,7 @@
         [self.contentsVC addObserver:self forKeyPath:@"profilePressed" options:NSKeyValueObservingOptionNew context:nil];
         [self.contentsVC addObserver:self forKeyPath:@"settingPressed" options:NSKeyValueObservingOptionNew context:nil];
     }
-    [self displayContentController:self.contentsVC below:vc.view];
+    [self displayContentController:self.contentsVC above:self.view];
 }
 
 - (void)hideContentsVC {
@@ -224,6 +245,15 @@
     [self.view insertSubview:content.view belowSubview:view];
     [content didMoveToParentViewController:self];
 }
+
+- (void)displayContentController:(UIViewController *)content above:(UIView *)view{
+    
+    [self addChildViewController:content];
+    [content.view setFrame:self.view.bounds];
+    [self.view insertSubview:content.view aboveSubview:view];
+    [content didMoveToParentViewController:self];
+}
+
 
 - (void)hideContentController:(UIViewController *)content{
     

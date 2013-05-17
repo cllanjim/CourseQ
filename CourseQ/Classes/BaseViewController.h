@@ -20,6 +20,8 @@
 @property (assign,nonatomic,getter = isRightSideLocked) BOOL rightSideLocked;
 @property (assign,nonatomic,getter = isLeftSideLocked) BOOL leftSideLocked;
 
+@property (assign, nonatomic) BOOL animationCompleted;
+
 - (IBAction)leftBarBtnTapped:(id)sender;
 - (IBAction)rightBarBtnTapped:(id)sender;
 

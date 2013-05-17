@@ -137,6 +137,8 @@
                          [overView addTarget:self action:@selector(restoreViewLocation) forControlEvents:UIControlEventTouchDown];
                          [[[UIApplication sharedApplication] keyWindow] addSubview:overView];
                          [overView release];
+                         self.animationCompleted = YES;
+                         
                      }];
 }
 
