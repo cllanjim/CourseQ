@@ -11,8 +11,6 @@
 
 @interface SettingViewController : BaseViewController
 
-
 - (IBAction)leftBarBtnTapped:(id)sender;
-
 
 @end

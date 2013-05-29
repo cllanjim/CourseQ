@@ -14,9 +14,14 @@
 
 @implementation SettingViewController
 
+
+
 - (IBAction)leftBarBtnTapped:(id)sender {
     
     [super leftBarBtnTapped:sender];
+}
+
+- (IBAction)logoutBtnPressed:(id)sender {
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

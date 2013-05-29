@@ -16,8 +16,10 @@
 #import "MainPage.h"
 #import "BaseViewController.h"
 #import "SettingViewController.h"
+#import "CourseDataFetcher.h"
+#import "CQReviewVC.h"
 
-@interface RootViewController ()
+@interface RootViewController () <ListViewControllerDelegate>
 
 @property (retain, nonatomic) LoginViewController *loginVC;
 @property (retain, nonatomic) ContentsViewController *contentsVC;
@@ -25,6 +27,8 @@
 @property (retain, nonatomic) MakerViewController *makerVC;
 @property (retain, nonatomic) ProfileViewController *profileVC;
 @property (retain, nonatomic) SettingViewController *settingVC;
+
+@property (assign, nonatomic) BOOL isFirstTime;
 
 @end
 
@@ -44,23 +48,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     // NSLog(@"rootVC");
+    self.isFirstTime = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    //插入contentsVC
-    [self showContentsVC];
-    [self.contentsVC.view setUserInteractionEnabled:NO];
-
-    //如果是第一次登陆，显示loginVC
-    if (1) {
-        self.loginVC = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
-        [self.loginVC addObserver:self forKeyPath:@"loginFinish" options:NSKeyValueObservingOptionNew context:nil];
-        [self displayContentController:self.loginVC animated:NO];
+    if (self.isFirstTime) {
         
-    }else {
+        //插入contentsVC
+        [self showContentsVC];
+        [self.contentsVC.view setUserInteractionEnabled:NO];
         
-        //如果不是第一次登陆，直接显示listVC
+        //如果是第一次登陆，显示loginVC
+        if (1) {
+            self.loginVC = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+            [self.loginVC addObserver:self forKeyPath:@"loginFinish" options:NSKeyValueObservingOptionNew context:nil];
+            [self displayContentController:self.loginVC animated:NO];
+            
+        }else {
+            
+            //如果不是第一次登陆，直接显示listVC
+        }
+        
+        self.isFirstTime = NO;
     }
     
     
@@ -68,12 +78,23 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - list delegate
+
+- (void)didSelectRowWithCourseFileName:(NSString *)name pageCount:(NSString *)count {
+    
+    CQReviewVC *reviewVC = [[[CQReviewVC alloc] initWithNibName:@"CQReviewVC" bundle:nil] autorelease];
+    [reviewVC setCourseFileName:name];
+    [reviewVC setPageCount:count];
+    [self displayContentController:reviewVC above:self.view];
 }
 
 #pragma mark - KVO
@@ -89,6 +110,7 @@
         self.listVC = [[[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil] autorelease];
         [self.listVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
         [self.listVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
+        [self.listVC setDelegate:self];
         [self displayContentController:self.listVC animated:NO];
         
         //kill loginVC
@@ -124,7 +146,8 @@
         self.listVC = [[[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil] autorelease];
         [self.listVC addObserver:self forKeyPath:@"leftPressed" options:NSKeyValueObservingOptionNew context:nil];
         [self.listVC addObserver:self forKeyPath:@"animationCompleted" options:NSKeyValueObservingOptionNew context:nil];
-
+        [self.listVC setDelegate:self];
+        
         self.listVC.animationCompleted = NO;
         
         [self displayContentController:self.listVC animated:YES];
@@ -149,7 +172,7 @@
     //contentsVC
     else if ([keyPath isEqualToString:@"leftPressed"]) {
         
-                
+        
         //把原来的VC往右移
         [(BaseViewController *)object animateHomeViewToSide:CGRectMake(kLeftMaxBounds, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     }
@@ -196,7 +219,7 @@
         self.settingVC = nil;
         [_settingVC release];
     }
-
+    
 }
 
 - (void)showContentsVC {
@@ -219,7 +242,7 @@
         [self.contentsVC removeObserver:self forKeyPath:@"settingPressed"];
         self.contentsVC = nil;
         [_contentsVC release];
-
+        
     }
     
 }

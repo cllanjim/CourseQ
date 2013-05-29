@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
+#warning 每次进入分类，就要显示分类列表？
+
+@protocol ListViewControllerDelegate <NSObject>
+
+- (void)didSelectRowWithCourseFileName:(NSString *)name pageCount:(NSString *)count;
+
+@end
+
 @interface ListViewController : BaseViewController
 
-- (IBAction)leftBarBtnTapped:(id)sender;
+@property (assign, nonatomic) id<ListViewControllerDelegate> delegate;
 
 @end
