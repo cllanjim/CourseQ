@@ -88,8 +88,6 @@
 		189A768517587EAA0023F28E /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189A768217587EAA0023F28E /* BaseViewController.xib */; };
 		189A768A17587F7F0023F28E /* ContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189A768817587F7F0023F28E /* ContentsViewController.m */; };
 		189A768B17587F7F0023F28E /* ContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189A768917587F7F0023F28E /* ContentsViewController.xib */; };
-		189A769017587F9B0023F28E /* MakerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189A768E17587F9B0023F28E /* MakerViewController.m */; };
-		189A769117587F9B0023F28E /* MakerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189A768F17587F9B0023F28E /* MakerViewController.xib */; };
 		189A769617587FBF0023F28E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189A769417587FBF0023F28E /* ProfileViewController.m */; };
 		189A769717587FBF0023F28E /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189A769517587FBF0023F28E /* ProfileViewController.xib */; };
 		18B45C2D174DBC5B0085CA67 /* CourseQ.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18B45C2B174DBC5B0085CA67 /* CourseQ.xcdatamodeld */; };
@@ -123,6 +121,33 @@
 		18E616781740E8F500E3CF7D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E616771740E8F500E3CF7D /* Default-568h@2x.png */; };
 		18E616871740E90400E3CF7D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E616851740E90400E3CF7D /* RootViewController.m */; };
 		18E616881740E90400E3CF7D /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E616861740E90400E3CF7D /* RootViewController.xib */; };
+		18ED3FC4175C6FEC00C59230 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FAF175C6FEC00C59230 /* AlbumViewController.m */; };
+		18ED3FC5175C6FEC00C59230 /* AlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FB0175C6FEC00C59230 /* AlbumViewController.xib */; };
+		18ED3FC6175C6FEC00C59230 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FB2175C6FEC00C59230 /* AudioViewController.m */; };
+		18ED3FC7175C6FEC00C59230 /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FB3175C6FEC00C59230 /* AudioViewController.xib */; };
+		18ED3FC8175C6FEC00C59230 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FB5175C6FEC00C59230 /* CameraViewController.m */; };
+		18ED3FC9175C6FEC00C59230 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FB6175C6FEC00C59230 /* CameraViewController.xib */; };
+		18ED3FCA175C6FEC00C59230 /* CapturedImageDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FB8175C6FEC00C59230 /* CapturedImageDisplayView.m */; };
+		18ED3FCB175C6FEC00C59230 /* FilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FBA175C6FEC00C59230 /* FilePathHelper.m */; };
+		18ED3FCC175C6FEC00C59230 /* MakerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FBC175C6FEC00C59230 /* MakerViewController.m */; };
+		18ED3FCD175C6FEC00C59230 /* MakerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FBD175C6FEC00C59230 /* MakerViewController.xib */; };
+		18ED3FCE175C6FEC00C59230 /* PhotoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FC0175C6FEC00C59230 /* PhotoMaskView.m */; };
+		18ED3FCF175C6FEC00C59230 /* PhotoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED3FC2175C6FEC00C59230 /* PhotoPreviewViewController.m */; };
+		18ED3FD0175C6FEC00C59230 /* PhotoPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FC3175C6FEC00C59230 /* PhotoPreviewViewController.xib */; };
+		18ED3FDE175C703500C59230 /* Audio_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD2175C703500C59230 /* Audio_background@2x.png */; };
+		18ED3FDF175C703500C59230 /* Audio_backwardBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD3175C703500C59230 /* Audio_backwardBtn@2x.png */; };
+		18ED3FE0175C703500C59230 /* Audio_forwardBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD4175C703500C59230 /* Audio_forwardBtn@2x.png */; };
+		18ED3FE1175C703500C59230 /* Audio_recordBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD5175C703500C59230 /* Audio_recordBtn@2x.png */; };
+		18ED3FE2175C703500C59230 /* Audio_recordPauseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD6175C703500C59230 /* Audio_recordPauseBtn@2x.png */; };
+		18ED3FE3175C703500C59230 /* Photo_bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD7175C703500C59230 /* Photo_bottomBar@2x.png */; };
+		18ED3FE4175C703500C59230 /* Photo_cameraBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD8175C703500C59230 /* Photo_cameraBtn@2x.png */; };
+		18ED3FE5175C703500C59230 /* Photo_cancelBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FD9175C703500C59230 /* Photo_cancelBtn@2x.png */; };
+		18ED3FE6175C703500C59230 /* Photo_cutBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FDA175C703500C59230 /* Photo_cutBtn@2x.png */; };
+		18ED3FE7175C703500C59230 /* PhotoPreview_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FDB175C703500C59230 /* PhotoPreview_background@2x.png */; };
+		18ED3FE8175C703500C59230 /* PhotoPreview_noBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FDC175C703500C59230 /* PhotoPreview_noBtn@2x.png */; };
+		18ED3FE9175C703500C59230 /* PhotoPreview_yesBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED3FDD175C703500C59230 /* PhotoPreview_yesBtn@2x.png */; };
+		18ED3FEB175C710700C59230 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED3FEA175C710700C59230 /* CoreVideo.framework */; };
+		18ED3FED175C715400C59230 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18ED3FEC175C715400C59230 /* QuartzCore.framework */; };
 		18EE059C174F46F100F02CFE /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE059B174F46F100F02CFE /* Member.m */; };
 		18F7F83C17584A6D00EB1E9F /* Detail_followBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7F83917584A6D00EB1E9F /* Detail_followBtn.png */; };
 		18F7F83D17584A6D00EB1E9F /* Detail_forwardBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7F83A17584A6D00EB1E9F /* Detail_forwardBtn.png */; };
@@ -233,9 +258,6 @@
 		189A768717587F7F0023F28E /* ContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsViewController.h; path = Contents/ContentsViewController.h; sourceTree = "<group>"; };
 		189A768817587F7F0023F28E /* ContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsViewController.m; path = Contents/ContentsViewController.m; sourceTree = "<group>"; };
 		189A768917587F7F0023F28E /* ContentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentsViewController.xib; path = Contents/ContentsViewController.xib; sourceTree = "<group>"; };
-		189A768D17587F9B0023F28E /* MakerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakerViewController.h; path = Maker/MakerViewController.h; sourceTree = "<group>"; };
-		189A768E17587F9B0023F28E /* MakerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MakerViewController.m; path = Maker/MakerViewController.m; sourceTree = "<group>"; };
-		189A768F17587F9B0023F28E /* MakerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MakerViewController.xib; path = Maker/MakerViewController.xib; sourceTree = "<group>"; };
 		189A769317587FBF0023F28E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = Profile/ProfileViewController.h; sourceTree = "<group>"; };
 		189A769417587FBF0023F28E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = Profile/ProfileViewController.m; sourceTree = "<group>"; };
 		189A769517587FBF0023F28E /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = Profile/ProfileViewController.xib; sourceTree = "<group>"; };
@@ -291,6 +313,41 @@
 		18E616841740E90400E3CF7D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		18E616851740E90400E3CF7D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		18E616861740E90400E3CF7D /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		18ED3FAE175C6FEC00C59230 /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumViewController.h; path = Maker/AlbumViewController.h; sourceTree = "<group>"; };
+		18ED3FAF175C6FEC00C59230 /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumViewController.m; path = Maker/AlbumViewController.m; sourceTree = "<group>"; };
+		18ED3FB0175C6FEC00C59230 /* AlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlbumViewController.xib; path = Maker/AlbumViewController.xib; sourceTree = "<group>"; };
+		18ED3FB1175C6FEC00C59230 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioViewController.h; path = Maker/AudioViewController.h; sourceTree = "<group>"; };
+		18ED3FB2175C6FEC00C59230 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioViewController.m; path = Maker/AudioViewController.m; sourceTree = "<group>"; };
+		18ED3FB3175C6FEC00C59230 /* AudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AudioViewController.xib; path = Maker/AudioViewController.xib; sourceTree = "<group>"; };
+		18ED3FB4175C6FEC00C59230 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = Maker/CameraViewController.h; sourceTree = "<group>"; };
+		18ED3FB5175C6FEC00C59230 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = Maker/CameraViewController.m; sourceTree = "<group>"; };
+		18ED3FB6175C6FEC00C59230 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraViewController.xib; path = Maker/CameraViewController.xib; sourceTree = "<group>"; };
+		18ED3FB7175C6FEC00C59230 /* CapturedImageDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CapturedImageDisplayView.h; path = Maker/CapturedImageDisplayView.h; sourceTree = "<group>"; };
+		18ED3FB8175C6FEC00C59230 /* CapturedImageDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CapturedImageDisplayView.m; path = Maker/CapturedImageDisplayView.m; sourceTree = "<group>"; };
+		18ED3FB9175C6FEC00C59230 /* FilePathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilePathHelper.h; path = Maker/FilePathHelper.h; sourceTree = "<group>"; };
+		18ED3FBA175C6FEC00C59230 /* FilePathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilePathHelper.m; path = Maker/FilePathHelper.m; sourceTree = "<group>"; };
+		18ED3FBB175C6FEC00C59230 /* MakerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakerViewController.h; path = Maker/MakerViewController.h; sourceTree = "<group>"; };
+		18ED3FBC175C6FEC00C59230 /* MakerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MakerViewController.m; path = Maker/MakerViewController.m; sourceTree = "<group>"; };
+		18ED3FBD175C6FEC00C59230 /* MakerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MakerViewController.xib; path = Maker/MakerViewController.xib; sourceTree = "<group>"; };
+		18ED3FBF175C6FEC00C59230 /* PhotoMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoMaskView.h; path = Maker/PhotoMaskView.h; sourceTree = "<group>"; };
+		18ED3FC0175C6FEC00C59230 /* PhotoMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoMaskView.m; path = Maker/PhotoMaskView.m; sourceTree = "<group>"; };
+		18ED3FC1175C6FEC00C59230 /* PhotoPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoPreviewViewController.h; path = Maker/PhotoPreviewViewController.h; sourceTree = "<group>"; };
+		18ED3FC2175C6FEC00C59230 /* PhotoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoPreviewViewController.m; path = Maker/PhotoPreviewViewController.m; sourceTree = "<group>"; };
+		18ED3FC3175C6FEC00C59230 /* PhotoPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoPreviewViewController.xib; path = Maker/PhotoPreviewViewController.xib; sourceTree = "<group>"; };
+		18ED3FD2175C703500C59230 /* Audio_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audio_background@2x.png"; path = "Maker/MakerResource/Audio_background@2x.png"; sourceTree = "<group>"; };
+		18ED3FD3175C703500C59230 /* Audio_backwardBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audio_backwardBtn@2x.png"; path = "Maker/MakerResource/Audio_backwardBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FD4175C703500C59230 /* Audio_forwardBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audio_forwardBtn@2x.png"; path = "Maker/MakerResource/Audio_forwardBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FD5175C703500C59230 /* Audio_recordBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audio_recordBtn@2x.png"; path = "Maker/MakerResource/Audio_recordBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FD6175C703500C59230 /* Audio_recordPauseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Audio_recordPauseBtn@2x.png"; path = "Maker/MakerResource/Audio_recordPauseBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FD7175C703500C59230 /* Photo_bottomBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Photo_bottomBar@2x.png"; path = "Maker/MakerResource/Photo_bottomBar@2x.png"; sourceTree = "<group>"; };
+		18ED3FD8175C703500C59230 /* Photo_cameraBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Photo_cameraBtn@2x.png"; path = "Maker/MakerResource/Photo_cameraBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FD9175C703500C59230 /* Photo_cancelBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Photo_cancelBtn@2x.png"; path = "Maker/MakerResource/Photo_cancelBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FDA175C703500C59230 /* Photo_cutBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Photo_cutBtn@2x.png"; path = "Maker/MakerResource/Photo_cutBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FDB175C703500C59230 /* PhotoPreview_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PhotoPreview_background@2x.png"; path = "Maker/MakerResource/PhotoPreview_background@2x.png"; sourceTree = "<group>"; };
+		18ED3FDC175C703500C59230 /* PhotoPreview_noBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PhotoPreview_noBtn@2x.png"; path = "Maker/MakerResource/PhotoPreview_noBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FDD175C703500C59230 /* PhotoPreview_yesBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PhotoPreview_yesBtn@2x.png"; path = "Maker/MakerResource/PhotoPreview_yesBtn@2x.png"; sourceTree = "<group>"; };
+		18ED3FEA175C710700C59230 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		18ED3FEC175C715400C59230 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		18EE059A174F46F100F02CFE /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Member.h; path = CoreDataModels/Member.h; sourceTree = "<group>"; };
 		18EE059B174F46F100F02CFE /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Member.m; path = CoreDataModels/Member.m; sourceTree = "<group>"; };
 		18F7F83917584A6D00EB1E9F /* Detail_followBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Detail_followBtn.png; sourceTree = "<group>"; };
@@ -303,6 +360,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18ED3FED175C715400C59230 /* QuartzCore.framework in Frameworks */,
+				18ED3FEB175C710700C59230 /* CoreVideo.framework in Frameworks */,
 				180B17B1175757DB00D52EF7 /* AVFoundation.framework in Frameworks */,
 				180B17AF175757D800D52EF7 /* AudioToolbox.framework in Frameworks */,
 				18B45CA1174DFD160085CA67 /* CFNetwork.framework in Frameworks */,
@@ -461,9 +520,28 @@
 		189A769217587FA10023F28E /* Maker */ = {
 			isa = PBXGroup;
 			children = (
-				189A768D17587F9B0023F28E /* MakerViewController.h */,
-				189A768E17587F9B0023F28E /* MakerViewController.m */,
-				189A768F17587F9B0023F28E /* MakerViewController.xib */,
+				18ED3FBB175C6FEC00C59230 /* MakerViewController.h */,
+				18ED3FBC175C6FEC00C59230 /* MakerViewController.m */,
+				18ED3FBD175C6FEC00C59230 /* MakerViewController.xib */,
+				18ED3FB4175C6FEC00C59230 /* CameraViewController.h */,
+				18ED3FB5175C6FEC00C59230 /* CameraViewController.m */,
+				18ED3FB6175C6FEC00C59230 /* CameraViewController.xib */,
+				18ED3FAE175C6FEC00C59230 /* AlbumViewController.h */,
+				18ED3FAF175C6FEC00C59230 /* AlbumViewController.m */,
+				18ED3FB0175C6FEC00C59230 /* AlbumViewController.xib */,
+				18ED3FC1175C6FEC00C59230 /* PhotoPreviewViewController.h */,
+				18ED3FC2175C6FEC00C59230 /* PhotoPreviewViewController.m */,
+				18ED3FC3175C6FEC00C59230 /* PhotoPreviewViewController.xib */,
+				18ED3FB1175C6FEC00C59230 /* AudioViewController.h */,
+				18ED3FB2175C6FEC00C59230 /* AudioViewController.m */,
+				18ED3FB3175C6FEC00C59230 /* AudioViewController.xib */,
+				18ED3FB7175C6FEC00C59230 /* CapturedImageDisplayView.h */,
+				18ED3FB8175C6FEC00C59230 /* CapturedImageDisplayView.m */,
+				18ED3FB9175C6FEC00C59230 /* FilePathHelper.h */,
+				18ED3FBA175C6FEC00C59230 /* FilePathHelper.m */,
+				18ED3FBF175C6FEC00C59230 /* PhotoMaskView.h */,
+				18ED3FC0175C6FEC00C59230 /* PhotoMaskView.m */,
+				18ED3FD1175C701F00C59230 /* MakerResource */,
 			);
 			name = Maker;
 			sourceTree = "<group>";
@@ -599,6 +677,8 @@
 		18E616601740E8F500E3CF7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18ED3FEC175C715400C59230 /* QuartzCore.framework */,
+				18ED3FEA175C710700C59230 /* CoreVideo.framework */,
 				180B17B0175757DB00D52EF7 /* AVFoundation.framework */,
 				180B17AE175757D800D52EF7 /* AudioToolbox.framework */,
 				18B45CA0174DFD150085CA67 /* CFNetwork.framework */,
@@ -654,6 +734,25 @@
 				18E616771740E8F500E3CF7D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18ED3FD1175C701F00C59230 /* MakerResource */ = {
+			isa = PBXGroup;
+			children = (
+				18ED3FD2175C703500C59230 /* Audio_background@2x.png */,
+				18ED3FD3175C703500C59230 /* Audio_backwardBtn@2x.png */,
+				18ED3FD4175C703500C59230 /* Audio_forwardBtn@2x.png */,
+				18ED3FD5175C703500C59230 /* Audio_recordBtn@2x.png */,
+				18ED3FD6175C703500C59230 /* Audio_recordPauseBtn@2x.png */,
+				18ED3FD7175C703500C59230 /* Photo_bottomBar@2x.png */,
+				18ED3FD8175C703500C59230 /* Photo_cameraBtn@2x.png */,
+				18ED3FD9175C703500C59230 /* Photo_cancelBtn@2x.png */,
+				18ED3FDA175C703500C59230 /* Photo_cutBtn@2x.png */,
+				18ED3FDB175C703500C59230 /* PhotoPreview_background@2x.png */,
+				18ED3FDC175C703500C59230 /* PhotoPreview_noBtn@2x.png */,
+				18ED3FDD175C703500C59230 /* PhotoPreview_yesBtn@2x.png */,
+			);
+			name = MakerResource;
 			sourceTree = "<group>";
 		};
 		18EE059D174F475500F02CFE /* Login */ = {
@@ -822,8 +921,24 @@
 				189A767F17587E3C0023F28E /* MicroCauseCell.xib in Resources */,
 				189A768517587EAA0023F28E /* BaseViewController.xib in Resources */,
 				189A768B17587F7F0023F28E /* ContentsViewController.xib in Resources */,
-				189A769117587F9B0023F28E /* MakerViewController.xib in Resources */,
 				189A769717587FBF0023F28E /* ProfileViewController.xib in Resources */,
+				18ED3FC5175C6FEC00C59230 /* AlbumViewController.xib in Resources */,
+				18ED3FC7175C6FEC00C59230 /* AudioViewController.xib in Resources */,
+				18ED3FC9175C6FEC00C59230 /* CameraViewController.xib in Resources */,
+				18ED3FCD175C6FEC00C59230 /* MakerViewController.xib in Resources */,
+				18ED3FD0175C6FEC00C59230 /* PhotoPreviewViewController.xib in Resources */,
+				18ED3FDE175C703500C59230 /* Audio_background@2x.png in Resources */,
+				18ED3FDF175C703500C59230 /* Audio_backwardBtn@2x.png in Resources */,
+				18ED3FE0175C703500C59230 /* Audio_forwardBtn@2x.png in Resources */,
+				18ED3FE1175C703500C59230 /* Audio_recordBtn@2x.png in Resources */,
+				18ED3FE2175C703500C59230 /* Audio_recordPauseBtn@2x.png in Resources */,
+				18ED3FE3175C703500C59230 /* Photo_bottomBar@2x.png in Resources */,
+				18ED3FE4175C703500C59230 /* Photo_cameraBtn@2x.png in Resources */,
+				18ED3FE5175C703500C59230 /* Photo_cancelBtn@2x.png in Resources */,
+				18ED3FE6175C703500C59230 /* Photo_cutBtn@2x.png in Resources */,
+				18ED3FE7175C703500C59230 /* PhotoPreview_background@2x.png in Resources */,
+				18ED3FE8175C703500C59230 /* PhotoPreview_noBtn@2x.png in Resources */,
+				18ED3FE9175C703500C59230 /* PhotoPreview_yesBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,12 +981,19 @@
 				189A767E17587E3C0023F28E /* MicroCauseCell.m in Sources */,
 				189A768417587EAA0023F28E /* BaseViewController.m in Sources */,
 				189A768A17587F7F0023F28E /* ContentsViewController.m in Sources */,
-				189A769017587F9B0023F28E /* MakerViewController.m in Sources */,
 				189A769617587FBF0023F28E /* ProfileViewController.m in Sources */,
 				18330682175886C0007F3A85 /* CourseDataFetcher.m in Sources */,
 				18330683175886C0007F3A85 /* DataParser.m in Sources */,
 				18330684175886C0007F3A85 /* LoginManager.m in Sources */,
 				18330685175886C0007F3A85 /* MongoRequest.m in Sources */,
+				18ED3FC4175C6FEC00C59230 /* AlbumViewController.m in Sources */,
+				18ED3FC6175C6FEC00C59230 /* AudioViewController.m in Sources */,
+				18ED3FC8175C6FEC00C59230 /* CameraViewController.m in Sources */,
+				18ED3FCA175C6FEC00C59230 /* CapturedImageDisplayView.m in Sources */,
+				18ED3FCB175C6FEC00C59230 /* FilePathHelper.m in Sources */,
+				18ED3FCC175C6FEC00C59230 /* MakerViewController.m in Sources */,
+				18ED3FCE175C6FEC00C59230 /* PhotoMaskView.m in Sources */,
+				18ED3FCF175C6FEC00C59230 /* PhotoPreviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

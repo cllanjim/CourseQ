@@ -14,6 +14,7 @@
 @protocol ListViewControllerDelegate <NSObject>
 
 - (void)didSelectRowWithCourseFileName:(NSString *)name pageCount:(NSString *)count VC:(UIViewController *)controller;
+- (void)shouldMoveToMakerVC;
 
 @end
 

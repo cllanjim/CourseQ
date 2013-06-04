@@ -33,6 +33,21 @@
         [_touchDelegate tableView:self touchesCancelled:touches withEvent:event];
     }
 }
+ 
+
+/*
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesCancelled:touches withEvent:event];
+    
+    if ([_touchDelegate conformsToProtocol:@protocol(TouchTableViewDelegate)] &&
+        [_touchDelegate respondsToSelector:@selector(tableView:touchesEnded:withEvent:)])
+    {
+        NSLog(@"end");
+        [_touchDelegate tableView:self touchesEnded:touches withEvent:event];
+    }
+}
+ */
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {

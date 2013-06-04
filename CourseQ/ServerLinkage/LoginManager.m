@@ -39,10 +39,12 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"%@", [request responseString]);
-    if ([[request.responseString substringToIndex:5] isEqualToString:@"LOGIN"]) {
+    if ([[request.responseString substringToIndex:8] isEqualToString:@"APPLOGIN"]){
+        
         if ([DataParser loginApplication:request.responseString]) {
+            
             [self.delegate didSucceedLogin];
+            
         }else {
             [self.delegate didFailLogin];
         }

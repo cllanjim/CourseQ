@@ -41,12 +41,14 @@
 {
     NSLog(@"Login - request fail");
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.rightBarBtn setEnabled:YES];
 }
 
 - (void)didFailLogin
 {
     NSLog(@"Login - can't login");
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.rightBarBtn setEnabled:YES];
 }
 
 - (void)didSucceedLogin

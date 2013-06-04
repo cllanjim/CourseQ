@@ -73,8 +73,6 @@
         
         [self restoreViewLocation];
     }
-    
-    
 }
 
 #pragma mark Other methods

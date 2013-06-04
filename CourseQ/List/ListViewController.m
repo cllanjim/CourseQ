@@ -46,6 +46,15 @@
 
 @implementation ListViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -91,7 +100,7 @@
 #pragma mark - Action
 
 - (IBAction)rightBarBtnTapped:(id)sender {
-    
+    [self.delegate shouldMoveToMakerVC];
 }
 
 - (IBAction)bottomLeftBtnPressed:(id)sender {
@@ -298,6 +307,7 @@
 
 #pragma mark - touchTable delegate
 
+
 - (void)tableView:(UITableView *)tableView touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self touchesBegan:touches withEvent:event];
@@ -308,11 +318,19 @@
     [self touchesEnded:touches withEvent:event];
 }
 
+
+
+- (void)tableView:(UITableView *)tableView touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesEnded:touches withEvent:event];
+}
+
+
 - (void)tableView:(UITableView *)tableView touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self touchesMoved:touches withEvent:event];
 }
-
+ 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

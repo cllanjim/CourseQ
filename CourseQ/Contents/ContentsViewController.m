@@ -87,6 +87,7 @@
         }
 	}
     cell.textLabel.text = [self.tableTitles objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor grayColor];
     
 	return cell;
 }

@@ -15,6 +15,7 @@
     NSArray *loginArr = [requestString componentsSeparatedByString:SPLIT1];
     
     NSString *statusOfLogin = [loginArr objectAtIndex:1];
+    
     if ([statusOfLogin isEqualToString:@"login success"])
     {
         isLoginSuccess = YES;

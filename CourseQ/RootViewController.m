@@ -22,9 +22,10 @@
 
 #import "CoverViewController.h"
 #import "LoginViewController.h"
+#import "MakerViewController.h"
 #import "LoginManager.h"
 
-@interface RootViewController () <CoverViewControllerProtocol, LoginViewControllerProtocol, ListViewControllerDelegate, SettingViewControllerProtocol, ContentsViewControllerProtocol, CQReviewVCProtocol>
+@interface RootViewController () <CoverViewControllerProtocol, LoginViewControllerProtocol, ListViewControllerDelegate, SettingViewControllerProtocol, ContentsViewControllerProtocol, CQReviewVCProtocol, MakerViewControllerProtocol>
 
 @property (retain, nonatomic) LoginViewController *loginVC;
 @property (retain, nonatomic) ContentsViewController *contentsVC;
@@ -93,12 +94,14 @@
 
 - (void)didSucceedAutomaticLogin:(UIViewController *)controller
 {
+    NSLog(@"fail");
     [self hideContentController:controller];
     [self showListVCRefresh:YES animated:NO];
 }
 
 - (void)didFailAutomaticLogin:(UIViewController *)controller
 {
+    NSLog(@"success");
     [self hideContentController:controller];
     [self showListVCRefresh:YES animated:NO];
 }
@@ -124,6 +127,23 @@
     [self showListVCRefresh:YES animated:NO];
 }
 
+#pragma mark - Maker
+
+- (void)showMakerVC
+{
+    MakerViewController *makerVC = [[[MakerViewController alloc] initWithNibName:@"MakerViewController" bundle:nil] autorelease];
+    [makerVC setDelegate:self];
+    [self displayContentController:makerVC animated:NO];
+    
+    [self hideOnscreenViewController];
+}
+
+- (void)didCancelWithMaker:(UIViewController *)controller
+{
+    [self hideContentController:controller];
+    [self showListVCRefresh:NO animated:NO];
+}
+
 #pragma mark - List
 
 - (void)showListVCRefresh:(BOOL)refresh animated:(BOOL)flag
@@ -143,6 +163,11 @@
 {
     [self hideContentController:controller];
     [self showDetailVCWithCourseFileName:name pageCount:count Animated:NO];
+}
+
+- (void)shouldMoveToMakerVC
+{
+    [self showMakerVC];
 }
 
 #pragma mark - Detail

@@ -22,9 +22,6 @@
 #define CQ_UNIT_SNDPATH @"sndLocalPath"
 #define CQ_UNIT_PAGE @"pageNumber"
 
-#define PAGE_WIDTH 320
-#define CELL_SIZE 450
-
 @interface CQReviewVC () <UITableViewDataSource,UITableViewDelegate,AVAudioPlayerDelegate,UIScrollViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UITableView *mainTable;

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MakerViewControllerProtocol <NSObject>
+
+- (void)didCancelWithMaker:(UIViewController *)controller;
+
+@end
+
 @interface MakerViewController : UIViewController
 
+@property (assign, nonatomic) id <MakerViewControllerProtocol> delegate;
 @end
