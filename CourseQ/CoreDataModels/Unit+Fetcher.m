@@ -15,8 +15,8 @@
 
 @implementation Unit (Fetcher)
 
-+ (Unit *)unitWithUnitDictionary:(NSDictionary *)dic withCourseFileName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context {
-
++ (Unit *)unitWithUnitDictionary:(NSDictionary *)dic withCourseFileName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
+{
     Unit *unit = nil;
     
     unit = [NSEntityDescription insertNewObjectForEntityForName:@"Unit" inManagedObjectContext:context];
@@ -36,6 +36,24 @@
     else {
         NSLog(@"unitError:%@", [error localizedDescription]);
     }
+    
+    return unit;
+}
+
++(Unit *)unitWithImagePath:(NSString *)img audioPath:(NSString *)aud page:(NSString *)page courseUID:(NSString *)uid inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    Unit *unit = nil;
+    
+    unit = [NSEntityDescription insertNewObjectForEntityForName:@"Unit" inManagedObjectContext:context];
+    unit.imagePath = img;
+    unit.audioPath = aud;
+    unit.page = page;
+    
+    Course *course = nil;
+    course = [NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:context];
+    course.uID = uid;
+    
+    unit.belongTo = course;
     
     return unit;
 }

@@ -39,11 +39,11 @@
 
 - (void)configureAudioRecorder {
     
-    /*
+    
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [session setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
-    */
+    
     
     NSLog(@"%@", self.audioSavePath);
      
@@ -56,7 +56,7 @@
     
     NSURL *url = [NSURL fileURLWithPath:self.audioSavePath];
     
-    NSError *error;
+    NSError *error = nil;
     self.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     if (error) {
         NSLog(@"error: %@", [error description]);
@@ -64,6 +64,7 @@
     [self.recorder setDelegate:self];
     [self.recorder prepareToRecord];
     [self.recorder setMeteringEnabled:YES];
+    
 }
 
 #pragma mark - interruption for iPhone
@@ -165,7 +166,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        NSLog(@"0");
+        [self.delegate didFinishWithMaker];
         
     }else if (buttonIndex == 1) {
         NSLog(@"1");
@@ -185,6 +186,14 @@
 }
 
 #pragma mark - action
+
+- (IBAction)dddd:(id)sender {
+    
+    NSURL *url = [NSURL fileURLWithPath:self.audioSavePath];
+    NSError *error = nil;
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    [player play];
+}
 
 
 - (IBAction)deleteBtnPressed:(id)sender
@@ -240,7 +249,13 @@
 - (IBAction)nextBtnPressed:(id)sender
 {
     if (self.isRecording) {
-        [self pause];
+        [self.timer invalidate];
+        
+        [self.recorder stop];
+        
+        [self showRecordBtn];
+        
+        self.recording = NO;
     }
     
     if (self.pageNumber == 5) {
@@ -295,10 +310,10 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.recorder = nil;
-}
-
-- (void)dealloc {
-    NSLog(@"dealloc");
+    
+    [_audioSavePath release];
+    [_imageSavePath release];
+    [_recorder release];
     [_imageDisplayView release];
     [_titleLabel release];
     [_timeLabel release];
@@ -306,6 +321,11 @@
     [_deleteBtn release];
     [_finishBtn release];
     [_nextBtn release];
+}
+
+- (void)dealloc {
+    
+    
     [super dealloc];
 }
 @end

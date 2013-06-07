@@ -27,17 +27,10 @@
 
 @interface RootViewController () <CoverViewControllerProtocol, LoginViewControllerProtocol, ListViewControllerDelegate, SettingViewControllerProtocol, ContentsViewControllerProtocol, CQReviewVCProtocol, MakerViewControllerProtocol>
 
-@property (retain, nonatomic) LoginViewController *loginVC;
+@property (retain, nonatomic) UIViewController *currentVC;
 @property (retain, nonatomic) ContentsViewController *contentsVC;
-@property (retain, nonatomic) ListViewController *listVC;
-@property (retain, nonatomic) MakerViewController *makerVC;
-@property (retain, nonatomic) ProfileViewController *profileVC;
-@property (retain, nonatomic) SettingViewController *settingVC;
-
-
 
 @property (assign, nonatomic) BOOL isFirstTime; //to avoid repeatly viewWillAppear fuc
-@property (retain, nonatomic) NSMutableArray *viewControllerStack;//only contain the one that currently shown in screen
 
 @end
 
@@ -72,15 +65,6 @@
         
         self.isFirstTime = NO;
     }
-}
-
-- (NSMutableArray *)viewControllerStack
-{
-    if (_viewControllerStack == nil) {
-        _viewControllerStack = [[[NSMutableArray alloc] init] autorelease];
-        [_viewControllerStack retain];
-    }
-    return _viewControllerStack;
 }
 
 #pragma mark - Cover
@@ -131,11 +115,15 @@
 
 - (void)showMakerVC
 {
+    //hide listVC
+    [self hideOnscreenViewController];
+    
+    //show makerVC
     MakerViewController *makerVC = [[[MakerViewController alloc] initWithNibName:@"MakerViewController" bundle:nil] autorelease];
+    self.currentVC = nil;
+    self.currentVC = makerVC;
     [makerVC setDelegate:self];
     [self displayContentController:makerVC animated:NO];
-    
-    [self hideOnscreenViewController];
 }
 
 - (void)didCancelWithMaker:(UIViewController *)controller
@@ -151,12 +139,13 @@
     [self hideOnscreenViewController];
     
     ListViewController *listVC = [[[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil] autorelease];
+    self.currentVC = nil;
+    self.currentVC = listVC;
     [listVC setDelegate:self];
     [listVC setRefresh:refresh];
     [listVC addObserver:self forKeyPath:@"isAnimating" options:NSKeyValueObservingOptionNew context:nil];
     
     [self displayContentController:listVC animated:flag];
-    [self.viewControllerStack insertObject:listVC atIndex:0];
 }
 
 - (void)didSelectRowWithCourseFileName:(NSString *)name pageCount:(NSString *)count VC:(UIViewController *)controller
@@ -174,7 +163,11 @@
 
 - (void)showDetailVCWithCourseFileName:(NSString *)name pageCount:(NSString *)count Animated:(BOOL)flag 
 {
+    [self hideOnscreenViewController];
+    
     CQReviewVC *reviewVC = [[[CQReviewVC alloc] initWithNibName:@"CQReviewVC" bundle:nil] autorelease];
+    self.currentVC = nil;
+    self.currentVC = reviewVC;
     [reviewVC setCourseFileName:name];
     [reviewVC setPageCount:count];
     [reviewVC setDelegate:self];
@@ -194,10 +187,11 @@
     [self hideOnscreenViewController];
     
     ProfileViewController *profileVC = [[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil] autorelease];
+    self.currentVC = nil;
+    self.currentVC = profileVC;
     [profileVC addObserver:self forKeyPath:@"isAnimating" options:NSKeyValueObservingOptionNew context:nil];
     
     [self displayContentController:profileVC animated:flag];
-    [self.viewControllerStack insertObject:profileVC atIndex:0];
 }
 
 #pragma mark - Setting
@@ -207,11 +201,12 @@
     [self hideOnscreenViewController];
     
     SettingViewController *settingVC = [[[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil] autorelease];
+    self.currentVC = nil;
+    self.currentVC = settingVC;
     [settingVC setDelegate:self];
     [settingVC addObserver:self forKeyPath:@"isAnimating" options:NSKeyValueObservingOptionNew context:nil];
     
     [self displayContentController:settingVC animated:flag];
-    [self.viewControllerStack insertObject:settingVC atIndex:0];
 }
 
 - (void)didFinishLogout
@@ -256,13 +251,12 @@
 
 - (void)hideOnscreenViewController
 {
-    if ([self.viewControllerStack count]>0) {
-        UIViewController *vc = self.viewControllerStack[0];
-        if ([vc respondsToSelector:@selector(isAnimating)]) {
-            [vc removeObserver:self forKeyPath:@"isAnimating"];
+    if (self.currentVC) {
+        UIViewController *controller = self.currentVC;
+        if ([controller respondsToSelector:@selector(isAnimating)]) {
+            [controller removeObserver:self forKeyPath:@"isAnimating"];
         }
-        [self hideContentController:vc];
-        [self.viewControllerStack removeObjectAtIndex:0];
+        [self hideContentController:controller];
     }
 }
 

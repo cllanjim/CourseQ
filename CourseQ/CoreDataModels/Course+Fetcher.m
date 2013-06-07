@@ -44,6 +44,8 @@ static NSString *_WebAdressOfFreeboxWS_DONWLOAD_2_0 = @"http://kechengpai.com/mi
         course.likeCount = dic[CQ_COURSE_LIKECOUNT];
         course.hitCount = dic[CQ_COURSE_HITSCOUNT];
         course.forwardCount = dic[CQ_COURSE_FORWARDCOUNT];
+        course.isFollowed = @YES;
+        
         
         //save thumbnail to local file
         NSString *thumbnailServerName = [course.courseFileName stringByAppendingFormat:@"_thumb.jpg"];

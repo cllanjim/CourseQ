@@ -11,8 +11,13 @@
 #import "AudioViewController.h"
 #import "CameraViewController.h"
 #import "AlbumViewController.h"
+#import "CQPreviewVC.h"
 
 #import "FilePathHelper.h"
+#import "CoreDataManager.h"
+#import <CoreData/CoreData.h>
+#import "Unit+Fetcher.h"
+#import "ConstantDefinition.h"
 
 @interface MakerViewController () <CameraViewControllerProtocol, AlbumViewControllerProtocol, AudioViewControllerProtocol>
 
@@ -22,6 +27,8 @@
 
 @property (copy, nonatomic) NSString *imagePath;
 
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 @implementation MakerViewController
@@ -30,7 +37,7 @@
 
 - (void)showCameraVCAnimated:(BOOL)flag
 {
-    CameraViewController *cameraVC = [[[CameraViewController alloc] initWithNibName:@"CameraViewController" bundle:nil] autorelease];
+    CameraViewController *cameraVC = [[CameraViewController alloc] initWithNibName:@"CameraViewController" bundle:nil];
     
     [cameraVC setImageSavePath:[self.filePathHelper imagePath]];
     [cameraVC setDelegate:self];
@@ -63,7 +70,7 @@
 
 - (void)showAlbumVCAnimated:(BOOL)flag
 {
-    AlbumViewController *albumVC = [[[AlbumViewController alloc] initWithNibName:@"AlbumViewController" bundle:nil] autorelease];
+    AlbumViewController *albumVC = [[AlbumViewController alloc] initWithNibName:@"AlbumViewController" bundle:nil];
     
     [albumVC setImageSavePath:[self.filePathHelper imagePath]];
     [albumVC setDelegate:self];
@@ -89,7 +96,7 @@
 
 - (void)showAudioVCAnimated:(BOOL)flag
 {
-    AudioViewController *audioVC = [[[AudioViewController alloc] initWithNibName:@"AudioViewController" bundle:nil] autorelease];
+    AudioViewController *audioVC = [[AudioViewController alloc] initWithNibName:@"AudioViewController" bundle:nil];
     
     //savePath
     [audioVC setAudioSavePath:[self.filePathHelper audioPath]];
@@ -109,18 +116,102 @@
 
 - (void)didFinishWithAudio
 {
+    
     [self dismissViewControllerAnimated:NO completion:^{
+        
+        if (self.filePathHelper) {
+            NSLog(@"y");
+            
+        }else{
+            NSLog(@"n");
+        }
         
         NSInteger currentPath = self.filePathHelper.currentPage + 1;
         [self.filePathHelper setCurrentPage:currentPath];
         
         [self showCameraVCAnimated:YES];
+         
     }];
+
 }
 
 - (void)didFinishWithMaker
 {
     //预览& 上传
+    //把路径存到CoreData里面
+    if (!self.managedObjectContext) {
+        [self useDemoDocument];
+    }
+}
+
+#pragma mark - Preview
+
+- (void)showPreviewVC
+{
+    CQPreviewVC *previewVC = [[CQPreviewVC alloc] initWithNibName:@"CQPreviewVC" bundle:nil];
+    [self presentViewController:previewVC animated:NO completion:NULL];
+}
+
+#pragma mark - CoreData things
+
+- (void)startInsertInfoToCoreData
+{
+    NSInteger pageCount = [self.filePathHelper currentPage];
+    
+    [self.managedObjectContext performBlockAndWait:^{
+        
+        for (int i = 0; i <= pageCount; i++) {
+            
+            [self.filePathHelper setCurrentPage:i];
+            NSString *imgP = [self.filePathHelper imagePath];
+            NSString *audP = [self.filePathHelper audioPath];
+            NSString *page = [NSString stringWithFormat:@"%d", i];
+            
+            [Unit unitWithImagePath:imgP audioPath:audP page:page courseUID:TEMP_COURSE_UID inManagedObjectContext:self.managedObjectContext];
+        }
+        
+        [self.managedObjectContext save:nil];
+    }];
+    
+    //dismiss audioVC
+    //then show reviewVC
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self showPreviewVC];
+    }];
+}
+
+- (void)useDemoDocument{
+    
+    CoreDataManager *cdm = [CoreDataManager sharedInstance];
+    UIManagedDocument *document = cdm.managedDocument;
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if (![fm fileExistsAtPath:[cdm.documentURL path]]) {
+        //create it
+        [document saveToURL:cdm.documentURL
+           forSaveOperation:UIDocumentSaveForCreating
+          completionHandler:^(BOOL success) {
+              if (success) {
+                  self.managedObjectContext = document.managedObjectContext;
+                  [self startInsertInfoToCoreData];
+              }
+          }];
+        
+    }else if (document.documentState == UIDocumentStateClosed){
+        //open it
+        [document openWithCompletionHandler:^(BOOL success) {
+            if (success) {
+                self.managedObjectContext = document.managedObjectContext;
+                [self startInsertInfoToCoreData];
+            }
+        }];
+        
+    }else{
+        //try to use it
+        self.managedObjectContext = document.managedObjectContext;
+        [self startInsertInfoToCoreData];
+    }
 }
 
 #pragma mark - VC lifecycle
@@ -144,6 +235,12 @@
         [self showCameraVCAnimated:NO];
         self.isTheFirstTime = NO;
     }
+}
+
+- (void)dealloc
+{
+    NSLog(@"maker dealloc");
+    [super dealloc];
 }
 
 @end

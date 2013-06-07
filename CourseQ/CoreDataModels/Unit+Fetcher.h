@@ -10,8 +10,16 @@
 
 @interface Unit (Fetcher)
 
+//DetailVC
 + (Unit *)unitWithUnitDictionary:(NSDictionary *)dic
               withCourseFileName:(NSString *)name
           inManagedObjectContext:(NSManagedObjectContext *)context;
+
+//MakerVC
++ (Unit *)unitWithImagePath:(NSString *)img
+                  audioPath:(NSString *)aud
+                       page:(NSString *)page
+                  courseUID:(NSString *)uid
+     inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

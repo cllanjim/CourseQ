@@ -5,6 +5,7 @@
         <attribute name="courseFileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="forwardCount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hitCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFollowed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="likeCount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pageNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postDate" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,15 +15,8 @@
         <attribute name="thumbnailPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weightness" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="units" optional="YES" toMany="YES" minCount="1" maxCount="6" deletionRule="Nullify" destinationEntity="Unit" inverseName="belongTo" inverseEntity="Unit" syncable="YES"/>
-    </entity>
-    <entity name="Member" representedClassName="Member" syncable="YES">
-        <attribute name="follow" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="follower" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="memberID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="portrait" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Unit" representedClassName="Unit" syncable="YES">
         <attribute name="audioPath" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,8 +25,7 @@
         <relationship name="belongTo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="units" inverseEntity="Course" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="90" positionY="347" width="128" height="253"/>
-        <element name="Member" positionX="160" positionY="192" width="128" height="133"/>
+        <element name="Course" positionX="90" positionY="347" width="128" height="285"/>
         <element name="Unit" positionX="-234" positionY="230" width="128" height="103"/>
     </elements>
 </model>

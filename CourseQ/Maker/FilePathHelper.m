@@ -62,6 +62,8 @@
     NSString *userPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     userPath = [userPath stringByAppendingPathComponent:@"microCourses"];
     
+    NSLog(@"userP:%@", userPath);
+    
     NSFileManager *fm = [NSFileManager defaultManager];
     if (![fm fileExistsAtPath:userPath]) {
         [fm createDirectoryAtPath:userPath withIntermediateDirectories:YES attributes:nil error:nil];

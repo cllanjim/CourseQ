@@ -18,6 +18,7 @@
 
 #import "MBProgressHUD.h"
 #import "ConstantDefinition.h"
+#import "CoreDataManager.h"
 
 #define ANIMATION_INTERVAL_BOTTOMBARHIGHLIGHT 0.3
 
@@ -64,7 +65,7 @@
     [self.categoryView setFrame:CGRectMake(0, 47, 320, 456)];
     
     self.refreshControl = [[[UIRefreshControl alloc] init] autorelease];
-    [self.refreshControl addTarget:self action:@selector(dataRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(followDataRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
 
@@ -150,21 +151,27 @@
 
 #pragma mark - fetch data
 
-- (void)dataRefresh {
+- (void)followDataRefresh {
     
     [self.refreshControl beginRefreshing];
     
     dispatch_queue_t fetchQ = dispatch_queue_create("Mongo Fetcher", NULL);
     dispatch_async(fetchQ, ^{
+        
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         NSString *memberID = [ud valueForKey:USER_ID];
         
         NSArray *courses = [CourseDataFetcher courseDictionariesWithMemberID:memberID skip:0 range:20];
         
-        [self.managedObjectContext performBlock:^{
+        NSLog(@"====%d", [courses count]);
+        
+        [self.managedObjectContext performBlockAndWait:^{
+            
             for (NSDictionary *courseDic in courses) {
                 [Course courseWithCourseDictionary:courseDic inManagedObjectContext:self.managedObjectContext];
             }
+            
+            [self.managedObjectContext save:nil];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.refreshControl endRefreshing];
@@ -176,15 +183,65 @@
 - (void)startFetchingList {
     
     if (self.refresh) {
-        [self dataRefresh];
+        [self followDataRefresh];
+        
     }
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     self.rightSideLocked = NO;
-    
+}
+
+- (void)followRequestUpdate
+{
+    if (self.fetchedResultsController) {
+        self.fetchedResultsController = nil;
+    }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Course"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"postDate" ascending:NO selector:@selector(compare:)]];
+    request.predicate = [NSPredicate predicateWithFormat:@"isFollowed = %@", @YES];
+    self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil] autorelease];
 }
 
 #pragma mark - CoreData things
+
+- (void)useDemoDocument{
+    
+    CoreDataManager *cdm = [CoreDataManager sharedInstance];
+    UIManagedDocument *document = cdm.managedDocument;
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if (![fm fileExistsAtPath:[cdm.documentURL path]]) {
+        //create it
+        [document saveToURL:cdm.documentURL
+           forSaveOperation:UIDocumentSaveForCreating
+          completionHandler:^(BOOL success) {
+              if (success) {
+                  self.managedObjectContext = document.managedObjectContext;
+                  [self followRequestUpdate];
+                  [self startFetchingList];//refresh data from server
+              }
+          }];
+        
+    }else if (document.documentState == UIDocumentStateClosed){
+        //open it
+        [document openWithCompletionHandler:^(BOOL success) {
+            if (success) {
+                self.managedObjectContext = document.managedObjectContext;
+                [self followRequestUpdate];
+                [self startFetchingList];
+            }
+        }];
+        
+    }else{
+        //try to use it
+        self.managedObjectContext = document.managedObjectContext;
+        [self followRequestUpdate];
+        [self startFetchingList];
+    }
+}
+
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -218,54 +275,6 @@
     
 }
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
-    
-    _managedObjectContext = managedObjectContext;
-    
-    if (managedObjectContext) {
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Course"];
-        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"postDate" ascending:NO selector:@selector(compare:)]];
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        
-    } else {
-        self.fetchedResultsController = nil;
-    }
-}
-
-- (void)useDemoDocument{
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *url = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"CourseDocument"];
-    UIManagedDocument *document = [[[UIManagedDocument alloc] initWithFileURL:url] autorelease];
-    
-    if (![fm fileExistsAtPath:[url path]]) {
-        //create it
-        [document saveToURL:url
-           forSaveOperation:UIDocumentSaveForCreating
-          completionHandler:^(BOOL success) {
-              if (success) {
-                  self.managedObjectContext = document.managedObjectContext;
-                  [self startFetchingList];//refresh data from server
-              }
-          }];
-        
-    }else if (document.documentState == UIDocumentStateClosed){
-        //open it
-        [document openWithCompletionHandler:^(BOOL success) {
-            if (success) {
-                self.managedObjectContext = document.managedObjectContext;
-                [self startFetchingList];
-            }
-        }];
-        
-    }else{
-        //try to use it
-        self.managedObjectContext = document.managedObjectContext;
-        [self startFetchingList];
-    }
-}
 
 #pragma mark - Fetching
 
@@ -292,6 +301,9 @@
     if (newfrc != oldfrc) {
         _fetchedResultsController = newfrc;
         newfrc.delegate = self;
+        //是否要retain？之前alloc的时候autorelease了
+        [_fetchedResultsController retain];
+        
         if ((!self.title || [self.title isEqualToString:oldfrc.fetchRequest.entity.name]) && (!self.navigationController || !self.navigationItem.title)) {
             self.title = newfrc.fetchRequest.entity.name;
         }

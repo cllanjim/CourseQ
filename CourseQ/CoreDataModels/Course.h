@@ -2,7 +2,7 @@
 //  Course.h
 //  CourseQ
 //
-//  Created by Jing on 13-5-28.
+//  Created by Jing on 13-6-5.
 //  Copyright (c) 2013年 jing. All rights reserved.
 //
 
@@ -23,9 +23,11 @@
 @property (nonatomic, retain) NSString * poster;
 @property (nonatomic, retain) NSString * posterID;
 @property (nonatomic, retain) NSString * posterPortrait;
+@property (nonatomic, retain) NSString * thumbnailPath;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * uID;
-@property (nonatomic, retain) NSString * thumbnailPath;
+@property (nonatomic, retain) NSNumber * isFollowed;
+@property (nonatomic, retain) NSString * weightness;
 @property (nonatomic, retain) NSSet *units;
 @end
 
