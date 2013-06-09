@@ -9,11 +9,10 @@
 #import "MongoRequest.h"
 #import "ASIFormDataRequest.h"
 #import "DataParser.h"
-
-static NSString *_WebAdressOfFreeboxWS_MongoDB_2_0 = @"http://test.coursepi.com/php/call_ajax.php?";
-static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi.com/php/call_ajax.php";
+#import "ConstantDefinition.h"
 
 @interface MongoRequest () <ASIHTTPRequestDelegate>
+
 @end
 
 @implementation MongoRequest
@@ -28,14 +27,44 @@ static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi
     NSLog(@"request fail: %@", [[request error] localizedDescription]);
 }
 
-#pragma mark - 
+#pragma mark -
+
++ (NSString *)JSONCourses{
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_DataMongo_REQ_2_0]];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:@"followcourse" forKey:@"operation"];
+    [request startSynchronous];
+    
+    NSString *result = [NSString stringWithString:[request responseString]];
+    
+    return result;
+}
+
++ (NSString *)JSONCoursesSkip:(NSInteger)x range:(NSInteger)y{
+    
+    NSString *skipX = [NSString stringWithFormat:@"%d",x];
+    NSString *rangeY = [NSString stringWithFormat:@"%d",y];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_DataMongo_REQ_2_0]];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:@"followcourse" forKey:@"operation"];
+    [request setPostValue:skipX forKey:@"skipx"];
+    [request setPostValue:rangeY forKey:@"rangey"];
+    [request startSynchronous];
+    
+    NSString *result = [NSString stringWithString:[request responseString]];
+    
+    // NSLog(@"%@",result);
+    return result;
+}
 
 + (NSString *)JSONCoursesWithMemberID:(NSString *)mID skip:(NSInteger)x range:(NSInteger)y {
     
     MongoRequest *mongoPostReq = [[MongoRequest new] autorelease];
     NSString *jsonArrOfFollowed = [mongoPostReq followersJSONWithMemberID:mID];
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_POST_2_0]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_REQ_2_0]];
     [request setRequestMethod:@"POST"];
     NSString *mongoFind = [NSString stringWithFormat:@"[{\"posterID\":{\"$in\":%@}},{\"_id\":0,\"likeJsonArr\":0}]@-%d@-@-{\"postDate\":-1}",jsonArrOfFollowed,x];
     [request setPostValue:@"MclistTest@-demo" forKey:@"MONGOSET"];
@@ -43,14 +72,43 @@ static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi
     [request startSynchronous];
     
     NSString *result = [NSString stringWithString:[DataParser resultFromMongoDB:[request responseString]]];
-                        
+    
     return result;
 }
+
++ (NSString *)JSONCoursesByWeightness{
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_DataMongo_REQ_2_0]];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:@"weight" forKey:@"operation"];
+    [request startSynchronous];
+    NSString *result = [NSString stringWithString:[request responseString]];
+    
+    return result;
+}
+
++ (NSString *)JSONCoursesByWeightnessSkip:(NSInteger)x range:(NSInteger)y{
+    
+    NSString *skipX = [NSString stringWithFormat:@"%d",x];
+    NSString *rangeY = [NSString stringWithFormat:@"%d",y];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_DataMongo_REQ_2_0]];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:@"weight" forKey:@"operation"];
+    [request setPostValue:skipX forKey:@"skipx"];
+    [request setPostValue:rangeY forKey:@"rangey"];
+    [request startSynchronous];
+    NSString *result = [NSString stringWithString:[request responseString]];
+    
+    return result;
+}
+
+#pragma mark - inner function
 
 - (NSString *)followersJSONWithMemberID:(NSString *)mID {
     
     //request
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_POST_2_0]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_REQ_2_0]];
     [request setRequestMethod:@"POST"];
     [request setDelegate:self];
     
@@ -70,7 +128,7 @@ static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi
 + (NSUInteger)hitsWithCourseUID:(NSString *)uid {
     
     //request
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_POST_2_0]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_REQ_2_0]];
     [request setRequestMethod:@"POST"];
     [request setDelegate:self];
     
@@ -94,14 +152,14 @@ static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi
         NSDictionary *dic = resultArray[0];
         hits = [dic[@"hits"] unsignedIntValue];
     }
-
+    
     return hits;
 }
 
 + (NSUInteger)likesWithCourseUID:(NSString *)uid {
     
     //request
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_POST_2_0]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_REQ_2_0]];
     [request setRequestMethod:@"POST"];
     [request setDelegate:self];
     
@@ -130,7 +188,7 @@ static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi
 +(NSUInteger)forwardWithCourseUID:(NSString *)uid {
     
     //request
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_POST_2_0]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:_WebAdressOfFreeboxWS_MongoDB_REQ_2_0]];
     [request setRequestMethod:@"POST"];
     [request setDelegate:self];
     
@@ -157,7 +215,7 @@ static NSString *_WebAdressOfFreeboxWS_MongoDB_POST_2_0 = @"http://test.coursepi
     }
     
     return forward;
-
+    
 }
 
 

@@ -18,8 +18,10 @@
 #import <CoreData/CoreData.h>
 #import "Unit+Fetcher.h"
 #import "ConstantDefinition.h"
+#import "UploadViewController.h"
 
-@interface MakerViewController () <CameraViewControllerProtocol, AlbumViewControllerProtocol, AudioViewControllerProtocol>
+
+@interface MakerViewController () <CameraViewControllerProtocol, AlbumViewControllerProtocol, AudioViewControllerProtocol, CQPreviewVCProtocol, UploadViewControllerProtocol>
 
 @property (retain, nonatomic) FilePathHelper *filePathHelper;
 
@@ -28,6 +30,8 @@
 @property (copy, nonatomic) NSString *imagePath;
 
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (retain, nonatomic) UINavigationController *naviC;
 
 @end
 
@@ -149,10 +153,67 @@
 - (void)showPreviewVC
 {
     CQPreviewVC *previewVC = [[CQPreviewVC alloc] initWithNibName:@"CQPreviewVC" bundle:nil];
+    [previewVC setDelegate:self];
     [self presentViewController:previewVC animated:NO completion:NULL];
 }
 
+- (void)shouldUpload
+{
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self showUploadVC];
+    }];
+}
+
+- (void)didCancelWithPreview
+{
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self.delegate didCancelWithMaker:self];
+    }];
+}
+
+#pragma mark - Upload
+
+- (void)showUploadVC
+{
+    UploadViewController *uploadVC = [[UploadViewController alloc] initWithNibName:@"UploadViewController" bundle:nil];
+    [uploadVC setDelegate:self];
+    [self presentViewController:uploadVC animated:NO completion:NULL];
+}
+
+- (void)didFinishWithUpload
+{
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self.delegate didCancelWithMaker:self];
+    }];
+}
+
+- (void)didCancelWithUpload
+{
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self.delegate didCancelWithMaker:self];
+    }];
+}
+
 #pragma mark - CoreData things
+
+- (void)deleteLastTempDataFromCoreData
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Unit"];
+    request.predicate = [NSPredicate predicateWithFormat:@"belongTo.uID = %@", TEMP_COURSE_UID];
+    
+    NSError *error = nil;
+    NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+        
+    }else if ([matches count] > 0) {
+        
+        for (int i = 0; i < [matches count]; i++) {
+            [self.managedObjectContext deleteObject:matches[i]];
+        }
+    }
+    
+}
 
 - (void)startInsertInfoToCoreData
 {
@@ -160,8 +221,11 @@
     
     [self.managedObjectContext performBlockAndWait:^{
         
+        //删除原来的
+        [self deleteLastTempDataFromCoreData];
+        
+        //添加新的
         for (int i = 0; i <= pageCount; i++) {
-            
             [self.filePathHelper setCurrentPage:i];
             NSString *imgP = [self.filePathHelper imagePath];
             NSString *audP = [self.filePathHelper audioPath];
@@ -170,7 +234,11 @@
             [Unit unitWithImagePath:imgP audioPath:audP page:page courseUID:TEMP_COURSE_UID inManagedObjectContext:self.managedObjectContext];
         }
         
-        [self.managedObjectContext save:nil];
+        NSError *error = nil;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"error: %@", [error localizedDescription]);
+        }
     }];
     
     //dismiss audioVC
@@ -221,6 +289,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    /*
+    PreviewViewController *pre = [[PreviewViewController alloc] initWithNibName:@"PreviewViewController" bundle:nil];
+    self.naviC = [[UINavigationController alloc] initWithRootViewController:pre];
+    [self.naviC.view setFrame:self.view.bounds];
+    [self.view addSubview:self.naviC.view];
+    */
+    
     self.filePathHelper = [[FilePathHelper alloc] init];
     [self.filePathHelper setCurrentPage:0];
     
@@ -229,6 +304,9 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    //PreviewViewController *pre = [[PreviewViewController alloc] initWithNibName:@"PreviewViewController" bundle:nil];
+    //[self presentViewController:pre animated:NO completion:NULL];
     
     if (self.isTheFirstTime) {
         

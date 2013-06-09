@@ -2,7 +2,7 @@
 //  Course.h
 //  CourseQ
 //
-//  Created by Jing on 13-6-5.
+//  Created by Jing on 13-6-8.
 //  Copyright (c) 2013年 jing. All rights reserved.
 //
 
@@ -15,9 +15,10 @@
 
 @property (nonatomic, retain) NSString * category;
 @property (nonatomic, retain) NSString * courseFileName;
-@property (nonatomic, retain) NSString * forwardCount;
-@property (nonatomic, retain) NSString * hitCount;
-@property (nonatomic, retain) NSString * likeCount;
+@property (nonatomic) int64_t forwardCount;
+@property (nonatomic) int64_t hitCount;
+@property (nonatomic) BOOL isFollowed;
+@property (nonatomic) int64_t likeCount;
 @property (nonatomic, retain) NSString * pageNumber;
 @property (nonatomic, retain) NSString * postDate;
 @property (nonatomic, retain) NSString * poster;
@@ -26,8 +27,7 @@
 @property (nonatomic, retain) NSString * thumbnailPath;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * uID;
-@property (nonatomic, retain) NSNumber * isFollowed;
-@property (nonatomic, retain) NSString * weightness;
+@property (nonatomic) int64_t weightness;
 @property (nonatomic, retain) NSSet *units;
 @end
 

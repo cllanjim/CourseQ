@@ -3,10 +3,10 @@
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="courseFileName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="forwardCount" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hitCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forwardCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="hitCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="isFollowed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="likeCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="likeCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="pageNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="poster" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,7 +15,7 @@
         <attribute name="thumbnailPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="weightness" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weightness" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="units" optional="YES" toMany="YES" minCount="1" maxCount="6" deletionRule="Nullify" destinationEntity="Unit" inverseName="belongTo" inverseEntity="Unit" syncable="YES"/>
     </entity>
     <entity name="Unit" representedClassName="Unit" syncable="YES">

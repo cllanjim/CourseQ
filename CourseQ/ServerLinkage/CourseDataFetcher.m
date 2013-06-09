@@ -11,6 +11,38 @@
 
 @implementation CourseDataFetcher
 
++ (NSArray *)courseDictionariesSkip:(NSInteger)x range:(NSInteger)y{
+    
+    //拿到课程数据
+    NSString * jsonString = [MongoRequest JSONCoursesSkip:x range:y];
+    
+    NSError *error = nil; // 创建一个Error的指针，以便解析错误的时候报错
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *result = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error]];// 加入出错处理
+    
+    if (error && result == nil) {
+        NSLog(@"error :%@", [error localizedDescription]);
+    }
+    
+    return result;
+}
+
++ (NSArray *)courseDictionariesByWeightSkip:(NSInteger)x range:(NSInteger)y{
+    
+    //拿到课程数据
+    NSString * jsonString = [MongoRequest JSONCoursesByWeightnessSkip:x range:y];
+    
+    NSError *error = nil; // 创建一个Error的指针，以便解析错误的时候报错
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *result = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error]];// 加入出错处理
+    
+    if (error && result == nil) {
+        NSLog(@"error :%@", [error localizedDescription]);
+    }
+    
+    return result;
+}
+
 + (NSArray *)courseDictionariesWithMemberID:(NSString *)mID skip:(NSInteger)x range:(NSInteger)y {
     
     //拿到y条课程数据，但不包括3个社交信息，所以要通过课程的ID再拿到这3个社交信息

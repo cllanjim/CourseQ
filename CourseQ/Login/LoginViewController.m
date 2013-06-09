@@ -8,15 +8,14 @@
 
 #import "LoginViewController.h"
 #import "WebSchoolLoginViewController.h"
-#import "LoginViewControllerDelegate.h"
 
-@interface LoginViewController () <LoginViewControllerDelegate>
+@interface LoginViewController () <WebSchoolLoginViewControllerProtocol>
 @property (assign, nonatomic) BOOL isFirstTime;//avoid repeatly viewWillAppear function
 @end
 
 @implementation LoginViewController
 
-#pragma mark - show VCs
+#pragma mark - webschool
 
 - (void)showWebSchoolLoginAnimated:(BOOL)flag
 {
@@ -25,8 +24,6 @@
     
     [self presentViewController:webSchoolLoginVC animated:flag completion:NULL];
 }
-
-#pragma mark - delegate
 
 - (void)didFinishLogin
 {
@@ -39,7 +36,6 @@
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
 
 #pragma mark - VC lifecycle
 

@@ -2,7 +2,7 @@
 //  Course.m
 //  CourseQ
 //
-//  Created by Jing on 13-6-5.
+//  Created by Jing on 13-6-8.
 //  Copyright (c) 2013年 jing. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @dynamic courseFileName;
 @dynamic forwardCount;
 @dynamic hitCount;
+@dynamic isFollowed;
 @dynamic likeCount;
 @dynamic pageNumber;
 @dynamic postDate;
@@ -25,7 +26,6 @@
 @dynamic thumbnailPath;
 @dynamic title;
 @dynamic uID;
-@dynamic isFollowed;
 @dynamic weightness;
 @dynamic units;
 

@@ -112,6 +112,12 @@
 
 #pragma mark - VC lifecycle
 
+- (void)viewDidLoad
+{
+    UIImage *image = [UIImage imageNamed:@"Login_forwardBtn@2x.png"];
+    [self.rightBarBtn setImage:image forState:UIControlStateDisabled];
+}
+
 - (void)dealloc
 {
     [_userNameTextField release];

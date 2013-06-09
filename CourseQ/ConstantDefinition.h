@@ -15,6 +15,12 @@
 #define _WebAdressOfFreeboxWS_WeiboLoginOK_2_0 @"http://test.kechengpai.com/php/weibo_login.php"//uid
 #define _WebAdressOfFreeboxWS_WeiboLoginOK_2_0_First @"http://test.kechengpai.com/php/weibo_login_first.php"//uid
 #define _WebAdressOfFreeboxWS_PORTRAIT_2_0 @"http://kechengpai.com/freebox/uploads/portrait/"
+// #define _WebAdressOfFreeboxWS_MongoDB_2_0  @"http://kechengpai.com/php/call_ajax.php?"
+#define _WebAdressOfFreeboxWS_MongoDB_REQ_2_0  @"http://kechengpai.com/php/call_ajax.php"
+#define _WebAdressOfFreeboxWS_DataMongo_REQ_2_0 @"http://kechengpai.com/php/mongo.php"
+
+#define _WebAdressOfFreeboxWS_Upload @"http://kechengpai.com/php/iosupload.php"
+
 
 #define USER_ID @"UserID"
 #define USER_ISSAVED @"UserInfoSaved"

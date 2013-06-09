@@ -78,14 +78,14 @@
 
 - (void)didSucceedAutomaticLogin:(UIViewController *)controller
 {
-    NSLog(@"fail");
+    NSLog(@"success");
     [self hideContentController:controller];
     [self showListVCRefresh:YES animated:NO];
 }
 
 - (void)didFailAutomaticLogin:(UIViewController *)controller
 {
-    NSLog(@"success");
+    NSLog(@"fail");
     [self hideContentController:controller];
     [self showListVCRefresh:YES animated:NO];
 }
@@ -120,6 +120,9 @@
     
     //show makerVC
     MakerViewController *makerVC = [[[MakerViewController alloc] initWithNibName:@"MakerViewController" bundle:nil] autorelease];
+    
+    //NSLog(@"maker = (%f,%f,%f,%f)", makerVC.view.frame.origin.x, makerVC.view.frame.origin.y, makerVC.view.frame.size.width, makerVC.view.frame.size.height);
+    
     self.currentVC = nil;
     self.currentVC = makerVC;
     [makerVC setDelegate:self];
@@ -168,6 +171,9 @@
     CQReviewVC *reviewVC = [[[CQReviewVC alloc] initWithNibName:@"CQReviewVC" bundle:nil] autorelease];
     self.currentVC = nil;
     self.currentVC = reviewVC;
+    
+    //NSLog(@"detail = (%f,%f,%f,%f)", reviewVC.view.frame.origin.x, reviewVC.view.frame.origin.y, reviewVC.view.frame.size.width, reviewVC.view.frame.size.height);
+    
     [reviewVC setCourseFileName:name];
     [reviewVC setPageCount:count];
     [reviewVC setDelegate:self];

@@ -155,13 +155,11 @@
     
     [self.refreshControl beginRefreshing];
     
+    NSLog(@"refreshing");
     dispatch_queue_t fetchQ = dispatch_queue_create("Mongo Fetcher", NULL);
     dispatch_async(fetchQ, ^{
         
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        NSString *memberID = [ud valueForKey:USER_ID];
-        
-        NSArray *courses = [CourseDataFetcher courseDictionariesWithMemberID:memberID skip:0 range:20];
+        NSArray *courses = [CourseDataFetcher courseDictionariesSkip:0 range:20];
         
         NSLog(@"====%d", [courses count]);
         
@@ -178,6 +176,7 @@
             });
         }];
     });
+    
 }
 
 - (void)startFetchingList {
@@ -198,8 +197,9 @@
     }
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Course"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"postDate" ascending:NO selector:@selector(compare:)]];
-    request.predicate = [NSPredicate predicateWithFormat:@"isFollowed = %@", @YES];
+    request.predicate = [NSPredicate predicateWithFormat:@"isFollowed = YES"];
     self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil] autorelease];
+    
 }
 
 #pragma mark - CoreData things
@@ -260,11 +260,10 @@
     //configure
     [self.courseCell.titleLabel setText:course.title];
     [self.courseCell.categoryLabel setText:course.category];
-    [self.courseCell.likeLabel setText:course.likeCount];
-    [self.courseCell.readerLabel setText:course.hitCount];
-    [self.courseCell.forwardLabel setText:course.forwardCount];
+    [self.courseCell.likeLabel setText:[NSString stringWithFormat:@"%lld",course.likeCount]];
+    [self.courseCell.readerLabel setText:[NSString stringWithFormat:@"%lld", course.hitCount]];
+    [self.courseCell.forwardLabel setText:[NSString stringWithFormat:@"%lld", course.forwardCount]];
     [self.courseCell.posterID setText:course.poster];
-    //self.courseCell.posterPortrait sette
     [self.courseCell.postDate setText:course.postDate];
     [self.courseCell.thumbnailImageView setImage:[UIImage imageWithContentsOfFile:course.thumbnailPath]];
     
@@ -274,7 +273,6 @@
     return cell;
     
 }
-
 
 #pragma mark - Fetching
 

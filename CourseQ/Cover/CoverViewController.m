@@ -8,6 +8,7 @@
 
 #import "CoverViewController.h"
 #import "LoginManager.h"
+#import "ConstantDefinition.h"
 
 #define WAIT_TIME_INTERVAL 1.0
 
@@ -34,16 +35,19 @@
 
 - (void)didSucceedLogin
 {
+    NSLog(@"login succeed");
     self.isLoginSuccessfully = YES;
 }
 
 - (void)didFailLogin
 {
+    NSLog(@"login fail");
     self.isLoginSuccessfully = NO;
 }
 
 - (void)didFailRequest
 {
+    NSLog(@"login request fail");
     self.isLoginSuccessfully = NO;
 }
 
@@ -61,6 +65,14 @@
 }
 
 #pragma mark - VC lifecycle
+
+- (void)viewDidLoad
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *username = [ud objectForKey:USER_NICKNAME];
+    NSString *password = [ud objectForKey:USER_PASSWORD];
+    [self.loginManager loginWithUsername:username password:password];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginViewControllerDelegate.h"
+
+@protocol WebSchoolLoginViewControllerProtocol <NSObject>
+- (void)didFinishLogin;
+- (void)didCancelLogin;
+@end
 
 @interface WebSchoolLoginViewController : UIViewController
-
-@property (assign, nonatomic) id<LoginViewControllerDelegate> delegate;
-
+@property (assign, nonatomic) id<WebSchoolLoginViewControllerProtocol> delegate;
 @end

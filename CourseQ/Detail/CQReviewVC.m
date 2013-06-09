@@ -465,6 +465,8 @@ static NSString *_WebAdressOfFreeboxWS_DONWLOAD_2_0 = @"http://kechengpai.com/mi
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    NSLog(@"%f,%f,%f,%f", self.mainTable.frame.origin.x, self.mainTable.frame.origin.y,self.mainTable.frame.size.width, self.mainTable.frame.size.height);
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
