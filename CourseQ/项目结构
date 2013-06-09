@@ -1,0 +1,24 @@
+
+1. 程序运行时，先进入RootViewController
+   RootViewController作为一个containment controller，由它来控制子UIViewController的生成、显示、消失、释放
+   RootViewController位于项目文件/CourseQ/MainFramePages里
+
+
+2. RootViewController包含以下数个子UIViewController：(/CourseQ/MainFramePages/MainPages)
+    
+    ListViewController：广场页，用来显示服务器上的所有课程。（在它的层级下，会有一个DetailViewController，来显示具体的课程内容。目前还未添加在项目中）
+    
+    MakerViewController：制作页，用来制作课程，包括录音、拍照、预览。（在它的层级下，还有数个UIViewController来处理具体的拍照和录音功能。目前还未添加在项目中）
+    
+    ProfileViewController：个人中心页，用来显示用户信息
+    
+    SettingViewController：设置页，用来修改用户资料
+    
+    LoginViewController：登陆页，用来登陆用户账号，只在程序第一次运行时显示
+    
+    ContentsViewController：目录页，让用户在数个页面间进行跳转。
+        当用户把其他子UIViewController（例如：广场页、个人中心页、设置页）往右滑时，才会通过RootViewController生成一个ContentsViewController，并让它显示在触发它的子UIViewController下面。
+        当用户选择ContentsViewController中的任何一个选项，RootViewController就会跳转到相应的子UIViewController，并干掉ContentsViewController
+        
+
+3. RootViewController通过KVO，观察子UIViewController的布尔值。一旦用户在子UIViewController向右滑动，就会修改该布尔值，以此通知RootViewController，让它生成ContentsViewController
